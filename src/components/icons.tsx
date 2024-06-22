@@ -1,5 +1,5 @@
-import { forwardRef, type SVGProps } from "react";
-import { cn } from "@/lib/utils";
+import { forwardRef, type SVGProps } from "react"
+import { cn } from "@/lib/utils"
 
 const AnimatedSpinner = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
   ({ className, ...props }, ref) => (
@@ -22,8 +22,8 @@ const AnimatedSpinner = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
       </g>
     </svg>
   ),
-);
-AnimatedSpinner.displayName = "AnimatedSpinner";
+)
+AnimatedSpinner.displayName = "AnimatedSpinner"
 
 const CreditCard = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
   ({ className, ...props }, ref) => (
@@ -43,10 +43,10 @@ const CreditCard = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
       <line x1="2" y1="10" x2="22" y2="10"></line>
     </svg>
   ),
-);
-CreditCard.displayName = "CreditCard";
+)
+CreditCard.displayName = "CreditCard"
 
-export { AnimatedSpinner, CreditCard };
+export { AnimatedSpinner, CreditCard }
 
 export {
   EyeOpenIcon,
@@ -76,4 +76,4 @@ export {
   ChevronRightIcon,
   DotsHorizontalIcon,
   ArrowLeftIcon,
-} from "@radix-ui/react-icons";
+} from "@radix-ui/react-icons"

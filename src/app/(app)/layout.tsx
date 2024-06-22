@@ -1,7 +1,7 @@
-import { VerificiationWarning } from "./_components/verificiation-warning";
+import { VerificiationWarning } from "./_components/verificiation-warning"
 
 interface Props {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export default function DashboardLayout({ children }: Props) {
@@ -12,5 +12,5 @@ export default function DashboardLayout({ children }: Props) {
         <div>{children}</div>
       </main>
     </div>
-  );
+  )
 }

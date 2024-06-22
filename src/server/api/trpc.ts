@@ -7,12 +7,12 @@
  * need to use are documented accordingly near the end.
  */
 
-import { uncachedValidateRequest } from "@/lib/auth/validate-request";
-import { stripe } from "@/lib/stripe";
-import { db } from "@/server/db";
-import { initTRPC, TRPCError, type inferAsyncReturnType } from "@trpc/server";
-import superjson from "superjson";
-import { ZodError } from "zod";
+import { uncachedValidateRequest } from "@/lib/auth/validate-request"
+import { stripe } from "@/lib/stripe"
+import { db } from "@/server/db"
+import { initTRPC, TRPCError, type inferAsyncReturnType } from "@trpc/server"
+import superjson from "superjson"
+import { ZodError } from "zod"
 
 /**
  * 1. CONTEXT
@@ -27,15 +27,15 @@ import { ZodError } from "zod";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-  const { session, user } = await uncachedValidateRequest();
+  const { session, user } = await uncachedValidateRequest()
   return {
     session,
     user,
     db,
     headers: opts.headers,
     stripe: stripe,
-  };
-};
+  }
+}
 
 /**
  * 2. INITIALIZATION
@@ -53,9 +53,9 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
         ...shape.data,
         zodError: error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
-    };
+    }
   },
-});
+})
 
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
@@ -69,7 +69,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
  *
  * @see https://trpc.io/docs/router
  */
-export const createTRPCRouter = t.router;
+export const createTRPCRouter = t.router
 
 /**
  * Public (unauthenticated) procedure
@@ -78,7 +78,7 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
-export const publicProcedure = t.procedure;
+export const publicProcedure = t.procedure
 
 /**
  * Protected (authenticated) procedure
@@ -90,7 +90,7 @@ export const publicProcedure = t.procedure;
  */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
   if (!ctx.session || !ctx.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({ code: "UNAUTHORIZED" })
   }
   return next({
     ctx: {
@@ -98,11 +98,11 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
       session: { ...ctx.session },
       user: { ...ctx.user },
     },
-  });
-});
+  })
+})
 
-export type TRPCContext = inferAsyncReturnType<typeof createTRPCContext>;
+export type TRPCContext = inferAsyncReturnType<typeof createTRPCContext>
 export type ProtectedTRPCContext = TRPCContext & {
-  user: NonNullable<TRPCContext["user"]>;
-  session: NonNullable<TRPCContext["session"]>;
-};
+  user: NonNullable<TRPCContext["user"]>
+  session: NonNullable<TRPCContext["session"]>
+}

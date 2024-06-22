@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useFormState } from "react-dom";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { PasswordInput } from "@/components/password-input";
-import { APP_TITLE } from "@/lib/constants";
-import { login } from "@/lib/auth/actions";
-import { Label } from "@/components/ui/label";
-import { SubmitButton } from "@/components/submit-button";
+import Link from "next/link"
+import { useFormState } from "react-dom"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { PasswordInput } from "@/components/password-input"
+import { APP_TITLE } from "@/lib/constants"
+import { login } from "@/lib/auth/actions"
+import { Label } from "@/components/ui/label"
+import { SubmitButton } from "@/components/submit-button"
 
 export function Login() {
-  const [state, formAction] = useFormState(login, null);
+  const [state, formAction] = useFormState(login, null)
 
   return (
     <Card className="w-full max-w-md">
@@ -72,5 +72,5 @@ export function Login() {
         </form>
       </CardContent>
     </Card>
-  );
+  )
 }

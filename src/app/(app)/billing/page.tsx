@@ -1,31 +1,31 @@
-import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import type { Metadata } from "next"
+import { redirect } from "next/navigation"
 
-import { ExclamationTriangleIcon } from "@/components/icons";
+import { ExclamationTriangleIcon } from "@/components/icons"
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { env } from "@/env";
-import { validateRequest } from "@/lib/auth/validate-request";
-import { APP_TITLE } from "@/lib/constants";
-import { api } from "@/trpc/server";
-import * as React from "react";
-import { Billing } from "./_components/billing";
-import { BillingSkeleton } from "./_components/billing-skeleton";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { env } from "@/env"
+import { validateRequest } from "@/lib/auth/validate-request"
+import { APP_TITLE } from "@/lib/constants"
+import { api } from "@/trpc/server"
+import * as React from "react"
+import { Billing } from "./_components/billing"
+import { BillingSkeleton } from "./_components/billing-skeleton"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Billing",
   description: "Manage your billing and subscription",
-};
+}
 
 export default async function BillingPage() {
-  const { user } = await validateRequest();
+  const { user } = await validateRequest()
 
   if (!user) {
-    redirect("/signin");
+    redirect("/signin")
   }
 
-  const stripePromises = Promise.all([api.stripe.getPlans.query(), api.stripe.getPlan.query()]);
+  const stripePromises = Promise.all([api.stripe.getPlans.query(), api.stripe.getPlan.query()])
 
   return (
     <div className="grid gap-8">
@@ -56,5 +56,5 @@ export default async function BillingPage() {
         <Billing stripePromises={stripePromises} />
       </React.Suspense>
     </div>
-  );
+  )
 }

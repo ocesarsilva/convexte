@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { relations } from "drizzle-orm"
 import {
   pgTableCreator,
   serial,
@@ -7,10 +7,10 @@ import {
   text,
   timestamp,
   varchar,
-} from "drizzle-orm/pg-core";
-import { DATABASE_PREFIX as prefix } from "@/lib/constants";
+} from "drizzle-orm/pg-core"
+import { DATABASE_PREFIX as prefix } from "@/lib/constants"
 
-export const pgTable = pgTableCreator((name) => `${prefix}_${name}`);
+export const pgTable = pgTableCreator((name) => `${prefix}_${name}`)
 
 export const users = pgTable(
   "users",
@@ -30,10 +30,10 @@ export const users = pgTable(
   (t) => ({
     emailIdx: index("user_email_idx").on(t.email),
   }),
-);
+)
 
-export type User = typeof users.$inferSelect;
-export type NewUser = typeof users.$inferInsert;
+export type User = typeof users.$inferSelect
+export type NewUser = typeof users.$inferInsert
 
 export const sessions = pgTable(
   "sessions",
@@ -45,7 +45,7 @@ export const sessions = pgTable(
   (t) => ({
     userIdx: index("session_user_idx").on(t.userId),
   }),
-);
+)
 
 export const emailVerificationCodes = pgTable(
   "email_verification_codes",
@@ -60,7 +60,7 @@ export const emailVerificationCodes = pgTable(
     userIdx: index("verification_code_user_idx").on(t.userId),
     emailIdx: index("verification_code_email_idx").on(t.email),
   }),
-);
+)
 
 export const passwordResetTokens = pgTable(
   "password_reset_tokens",
@@ -72,7 +72,7 @@ export const passwordResetTokens = pgTable(
   (t) => ({
     userIdx: index("password_token_user_idx").on(t.userId),
   }),
-);
+)
 
 export const posts = pgTable(
   "posts",
@@ -93,14 +93,14 @@ export const posts = pgTable(
     userIdx: index("post_user_idx").on(t.userId),
     createdAtIdx: index("post_created_at_idx").on(t.createdAt),
   }),
-);
+)
 
 export const postRelations = relations(posts, ({ one }) => ({
   user: one(users, {
     fields: [posts.userId],
     references: [users.id],
   }),
-}));
+}))
 
-export type Post = typeof posts.$inferSelect;
-export type NewPost = typeof posts.$inferInsert;
+export type Post = typeof posts.$inferSelect
+export type NewPost = typeof posts.$inferInsert

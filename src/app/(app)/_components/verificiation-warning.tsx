@@ -1,12 +1,12 @@
-import { ExclamationTriangleIcon } from "@/components/icons";
+import { ExclamationTriangleIcon } from "@/components/icons"
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { validateRequest } from "@/lib/auth/validate-request";
-import Link from "next/link";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Button } from "@/components/ui/button"
+import { validateRequest } from "@/lib/auth/validate-request"
+import Link from "next/link"
 
 export async function VerificiationWarning() {
-  const { user } = await validateRequest();
+  const { user } = await validateRequest()
 
   return user?.emailVerified === false ? (
     <Alert className="rounded-lg bg-yellow-50 text-yellow-700 dark:bg-gray-800 dark:text-yellow-400">
@@ -24,5 +24,5 @@ export async function VerificiationWarning() {
         </Button>
       </div>
     </Alert>
-  ) : null;
+  ) : null
 }

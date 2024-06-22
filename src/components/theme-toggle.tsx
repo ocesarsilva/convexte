@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { useTheme } from "next-themes";
-import { SunIcon, MoonIcon } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes"
+import { SunIcon, MoonIcon } from "@/components/icons"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"
 
 export const ThemeToggle = () => {
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme()
 
   return (
     <DropdownMenu>
@@ -28,5 +28,5 @@ export const ThemeToggle = () => {
         <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}

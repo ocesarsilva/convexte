@@ -1,6 +1,6 @@
-import { createTRPCRouter, protectedProcedure } from "../../trpc";
-import * as inputs from "./post.input";
-import * as services from "./post.service";
+import { createTRPCRouter, protectedProcedure } from "../../trpc"
+import * as inputs from "./post.input"
+import * as services from "./post.service"
 
 export const postRouter = createTRPCRouter({
   list: protectedProcedure
@@ -26,4 +26,4 @@ export const postRouter = createTRPCRouter({
   myPosts: protectedProcedure
     .input(inputs.myPostsSchema)
     .query(({ ctx, input }) => services.myPosts(ctx, input)),
-});
+})

@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import * as React from "react";
+import * as React from "react"
 
-import { Button } from "@/components/ui/button";
-import type { ManageSubscriptionInput } from "@/server/api/routers/stripe/stripe.input";
-import { api } from "@/trpc/react";
-import { toast } from "sonner";
+import { Button } from "@/components/ui/button"
+import type { ManageSubscriptionInput } from "@/server/api/routers/stripe/stripe.input"
+import { api } from "@/trpc/react"
+import { toast } from "sonner"
 
 export function ManageSubscriptionForm({
   isPro,
@@ -13,11 +13,11 @@ export function ManageSubscriptionForm({
   stripeSubscriptionId,
   stripePriceId,
 }: ManageSubscriptionInput) {
-  const [isPending, startTransition] = React.useTransition();
-  const managePlanMutation = api.stripe.managePlan.useMutation();
+  const [isPending, startTransition] = React.useTransition()
+  const managePlanMutation = api.stripe.managePlan.useMutation()
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    e.preventDefault()
 
     startTransition(async () => {
       try {
@@ -26,17 +26,17 @@ export function ManageSubscriptionForm({
           stripeCustomerId,
           stripeSubscriptionId,
           stripePriceId,
-        });
+        })
 
         if (session) {
-          window.location.href = session.url ?? "/dashboard/billing";
+          window.location.href = session.url ?? "/dashboard/billing"
         }
       } catch (err) {
         err instanceof Error
           ? toast.error(err.message)
-          : toast.error("An error occurred. Please try again.");
+          : toast.error("An error occurred. Please try again.")
       }
-    });
+    })
   }
 
   return (
@@ -45,5 +45,5 @@ export function ManageSubscriptionForm({
         {isPending ? "Loading..." : isPro ? "Manage plan" : "Subscribe now"}
       </Button>
     </form>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-import "server-only";
+import "server-only"
 
-import { EmailVerificationTemplate } from "./templates/email-verification";
-import { ResetPasswordTemplate } from "./templates/reset-password";
-import { render } from "@react-email/render";
-import { env } from "@/env";
-import { EMAIL_SENDER } from "@/lib/constants";
-import { createTransport, type TransportOptions } from "nodemailer";
-import type { ComponentProps } from "react";
+import { EmailVerificationTemplate } from "./templates/email-verification"
+import { ResetPasswordTemplate } from "./templates/reset-password"
+import { render } from "@react-email/render"
+import { env } from "@/env"
+import { EMAIL_SENDER } from "@/lib/constants"
+import { createTransport, type TransportOptions } from "nodemailer"
+import type { ComponentProps } from "react"
 
 export enum EmailTemplate {
   EmailVerification = "EmailVerification",
@@ -14,9 +14,9 @@ export enum EmailTemplate {
 }
 
 export type PropsMap = {
-  [EmailTemplate.EmailVerification]: ComponentProps<typeof EmailVerificationTemplate>;
-  [EmailTemplate.PasswordReset]: ComponentProps<typeof ResetPasswordTemplate>;
-};
+  [EmailTemplate.EmailVerification]: ComponentProps<typeof EmailVerificationTemplate>
+  [EmailTemplate.PasswordReset]: ComponentProps<typeof ResetPasswordTemplate>
+}
 
 const getEmailTemplate = <T extends EmailTemplate>(template: T, props: PropsMap[NoInfer<T>]) => {
   switch (template) {
@@ -26,18 +26,18 @@ const getEmailTemplate = <T extends EmailTemplate>(template: T, props: PropsMap[
         body: render(
           <EmailVerificationTemplate {...(props as PropsMap[EmailTemplate.EmailVerification])} />,
         ),
-      };
+      }
     case EmailTemplate.PasswordReset:
       return {
         subject: "Reset your password",
         body: render(
           <ResetPasswordTemplate {...(props as PropsMap[EmailTemplate.PasswordReset])} />,
         ),
-      };
+      }
     default:
-      throw new Error("Invalid email template");
+      throw new Error("Invalid email template")
   }
-};
+}
 
 const smtpConfig = {
   host: env.SMTP_HOST,
@@ -46,9 +46,9 @@ const smtpConfig = {
     user: env.SMTP_USER,
     pass: env.SMTP_PASSWORD,
   },
-};
+}
 
-const transporter = createTransport(smtpConfig as TransportOptions);
+const transporter = createTransport(smtpConfig as TransportOptions)
 
 export const sendMail = async <T extends EmailTemplate>(
   to: string,
@@ -56,11 +56,11 @@ export const sendMail = async <T extends EmailTemplate>(
   props: PropsMap[NoInfer<T>],
 ) => {
   if (env.NODE_ENV !== "production") {
-    console.log("📨 Email sent to:", to, "with template:", template, "and props:", props);
-    return;
+    console.log("📨 Email sent to:", to, "with template:", template, "and props:", props)
+    return
   }
 
-  const { subject, body } = getEmailTemplate(template, props);
+  const { subject, body } = getEmailTemplate(template, props)
 
-  return transporter.sendMail({ from: EMAIL_SENDER, to, subject, html: body });
-};
+  return transporter.sendMail({ from: EMAIL_SENDER, to, subject, html: body })
+}

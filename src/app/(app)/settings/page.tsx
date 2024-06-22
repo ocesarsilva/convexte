@@ -1,20 +1,20 @@
-import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import type { Metadata } from "next"
+import { redirect } from "next/navigation"
 
-import { env } from "@/env";
-import { validateRequest } from "@/lib/auth/validate-request";
+import { env } from "@/env"
+import { validateRequest } from "@/lib/auth/validate-request"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Billing",
   description: "Manage your billing and subscription",
-};
+}
 
 export default async function BillingPage() {
-  const { user } = await validateRequest();
+  const { user } = await validateRequest()
 
   if (!user) {
-    redirect("/signin");
+    redirect("/signin")
   }
 
   return (
@@ -25,5 +25,5 @@ export default async function BillingPage() {
       </div>
       <p>Work in progress...</p>
     </div>
-  );
+  )
 }

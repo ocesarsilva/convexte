@@ -1,10 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ResetPassword } from "./reset-password";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { ResetPassword } from "./reset-password"
 
 export const metadata = {
   title: "Reset Password",
   description: "Reset Password Page",
-};
+}
 
 export default function ResetPasswordPage({ params }: { params: { token: string } }) {
   return (
@@ -17,5 +17,5 @@ export default function ResetPasswordPage({ params }: { params: { token: string 
         <ResetPassword token={params.token} />
       </CardContent>
     </Card>
-  );
+  )
 }

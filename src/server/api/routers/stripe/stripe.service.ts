@@ -1,8 +1,8 @@
-import { freePlan, proPlan, subscriptionPlans } from "@/config/subscriptions";
-import type { ProtectedTRPCContext } from "../../trpc";
-import { stripe } from "@/lib/stripe";
-import { absoluteUrl, formatPrice } from "@/lib/utils";
-import type { ManageSubscriptionInput } from "./stripe.input";
+import { freePlan, proPlan, subscriptionPlans } from "@/config/subscriptions"
+import type { ProtectedTRPCContext } from "../../trpc"
+import { stripe } from "@/lib/stripe"
+import { absoluteUrl, formatPrice } from "@/lib/utils"
+import type { ManageSubscriptionInput } from "./stripe.input"
 
 export const getStripePlans = async (ctx: ProtectedTRPCContext) => {
   try {
@@ -11,13 +11,13 @@ export const getStripePlans = async (ctx: ProtectedTRPCContext) => {
       columns: {
         id: true,
       },
-    });
+    })
 
     if (!user) {
-      throw new Error("User not found.");
+      throw new Error("User not found.")
     }
 
-    const proPrice = await stripe.prices.retrieve(proPlan.stripePriceId);
+    const proPrice = await stripe.prices.retrieve(proPlan.stripePriceId)
 
     return subscriptionPlans.map((plan) => {
       return {
@@ -28,13 +28,13 @@ export const getStripePlans = async (ctx: ProtectedTRPCContext) => {
                 currency: proPrice.currency,
               })
             : formatPrice(0 / 100, { currency: proPrice.currency }),
-      };
-    });
+      }
+    })
   } catch (err) {
-    console.error(err);
-    return [];
+    console.error(err)
+    return []
   }
-};
+}
 
 export const getStripePlan = async (ctx: ProtectedTRPCContext) => {
   try {
@@ -46,24 +46,24 @@ export const getStripePlan = async (ctx: ProtectedTRPCContext) => {
         stripeSubscriptionId: true,
         stripeCustomerId: true,
       },
-    });
+    })
 
     if (!user) {
-      throw new Error("User not found.");
+      throw new Error("User not found.")
     }
 
     // Check if user is on a pro plan
     const isPro =
       !!user.stripePriceId &&
-      (user.stripeCurrentPeriodEnd?.getTime() ?? 0) + 86_400_000 > Date.now();
+      (user.stripeCurrentPeriodEnd?.getTime() ?? 0) + 86_400_000 > Date.now()
 
-    const plan = isPro ? proPlan : freePlan;
+    const plan = isPro ? proPlan : freePlan
 
     // Check if user has canceled subscription
-    let isCanceled = false;
+    let isCanceled = false
     if (isPro && !!user.stripeSubscriptionId) {
-      const stripePlan = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
-      isCanceled = stripePlan.cancel_at_period_end;
+      const stripePlan = await stripe.subscriptions.retrieve(user.stripeSubscriptionId)
+      isCanceled = stripePlan.cancel_at_period_end
     }
 
     return {
@@ -73,18 +73,18 @@ export const getStripePlan = async (ctx: ProtectedTRPCContext) => {
       stripeCustomerId: user.stripeCustomerId,
       isPro,
       isCanceled,
-    };
+    }
   } catch (err) {
-    console.error(err);
-    return null;
+    console.error(err)
+    return null
   }
-};
+}
 
 export const manageSubscription = async (
   ctx: ProtectedTRPCContext,
   input: ManageSubscriptionInput,
 ) => {
-  const billingUrl = absoluteUrl("/dashboard/billing");
+  const billingUrl = absoluteUrl("/dashboard/billing")
 
   const user = await ctx.db.query.users.findFirst({
     where: (table, { eq }) => eq(table.id, ctx.user.id),
@@ -95,10 +95,10 @@ export const manageSubscription = async (
       stripeSubscriptionId: true,
       stripePriceId: true,
     },
-  });
+  })
 
   if (!user) {
-    throw new Error("User not found.");
+    throw new Error("User not found.")
   }
 
   // If the user is already subscribed to a plan, we redirect them to the Stripe billing portal
@@ -106,11 +106,11 @@ export const manageSubscription = async (
     const stripeSession = await ctx.stripe.billingPortal.sessions.create({
       customer: input.stripeCustomerId,
       return_url: billingUrl,
-    });
+    })
 
     return {
       url: stripeSession.url,
-    };
+    }
   }
 
   // If the user is not subscribed to a plan, we create a Stripe Checkout session
@@ -130,9 +130,9 @@ export const manageSubscription = async (
     metadata: {
       userId: user.id,
     },
-  });
+  })
 
   return {
     url: stripeSession.url,
-  };
-};
+  }
+}

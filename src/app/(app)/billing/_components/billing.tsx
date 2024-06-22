@@ -1,8 +1,8 @@
-import Link from "next/link";
+import Link from "next/link"
 
-import { CheckIcon } from "@/components/icons";
+import { CheckIcon } from "@/components/icons"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -10,19 +10,17 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { formatDate } from "@/lib/utils";
-import { type RouterOutputs } from "@/trpc/shared";
-import { ManageSubscriptionForm } from "./manage-subscription-form";
+} from "@/components/ui/card"
+import { formatDate } from "@/lib/utils"
+import { type RouterOutputs } from "@/trpc/shared"
+import { ManageSubscriptionForm } from "./manage-subscription-form"
 
 interface BillingProps {
-  stripePromises: Promise<
-    [RouterOutputs["stripe"]["getPlans"], RouterOutputs["stripe"]["getPlan"]]
-  >;
+  stripePromises: Promise<[RouterOutputs["stripe"]["getPlans"], RouterOutputs["stripe"]["getPlan"]]>
 }
 
 export async function Billing({ stripePromises }: BillingProps) {
-  const [plans, plan] = await stripePromises;
+  const [plans, plan] = await stripePromises
 
   return (
     <>
@@ -83,5 +81,5 @@ export async function Billing({ stripePromises }: BillingProps) {
         ))}
       </section>
     </>
-  );
+  )
 }

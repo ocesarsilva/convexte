@@ -1,5 +1,5 @@
-import { generateId } from "lucia";
-import type { ProtectedTRPCContext } from "../../trpc";
+import { generateId } from "lucia"
+import type { ProtectedTRPCContext } from "../../trpc"
 import type {
   CreatePostInput,
   DeletePostInput,
@@ -7,9 +7,9 @@ import type {
   ListPostsInput,
   MyPostsInput,
   UpdatePostInput,
-} from "./post.input";
-import { posts } from "@/server/db/schema";
-import { eq } from "drizzle-orm";
+} from "./post.input"
+import { posts } from "@/server/db/schema"
+import { eq } from "drizzle-orm"
 
 export const listPosts = async (ctx: ProtectedTRPCContext, input: ListPostsInput) => {
   return ctx.db.query.posts.findMany({
@@ -25,18 +25,18 @@ export const listPosts = async (ctx: ProtectedTRPCContext, input: ListPostsInput
       createdAt: true,
     },
     with: { user: { columns: { email: true } } },
-  });
-};
+  })
+}
 
 export const getPost = async (ctx: ProtectedTRPCContext, { id }: GetPostInput) => {
   return ctx.db.query.posts.findFirst({
     where: (table, { eq }) => eq(table.id, id),
     with: { user: { columns: { email: true } } },
-  });
-};
+  })
+}
 
 export const createPost = async (ctx: ProtectedTRPCContext, input: CreatePostInput) => {
-  const id = generateId(15);
+  const id = generateId(15)
 
   await ctx.db.insert(posts).values({
     id,
@@ -44,10 +44,10 @@ export const createPost = async (ctx: ProtectedTRPCContext, input: CreatePostInp
     title: input.title,
     excerpt: input.excerpt,
     content: input.content,
-  });
+  })
 
-  return { id };
-};
+  return { id }
+}
 
 export const updatePost = async (ctx: ProtectedTRPCContext, input: UpdatePostInput) => {
   const [item] = await ctx.db
@@ -58,15 +58,15 @@ export const updatePost = async (ctx: ProtectedTRPCContext, input: UpdatePostInp
       content: input.content,
     })
     .where(eq(posts.id, input.id))
-    .returning();
+    .returning()
 
-  return item;
-};
+  return item
+}
 
 export const deletePost = async (ctx: ProtectedTRPCContext, { id }: DeletePostInput) => {
-  const [item] = await ctx.db.delete(posts).where(eq(posts.id, id)).returning();
-  return item;
-};
+  const [item] = await ctx.db.delete(posts).where(eq(posts.id, id)).returning()
+  return item
+}
 
 export const myPosts = async (ctx: ProtectedTRPCContext, input: MyPostsInput) => {
   return ctx.db.query.posts.findMany({
@@ -81,5 +81,5 @@ export const myPosts = async (ctx: ProtectedTRPCContext, input: MyPostsInput) =>
       status: true,
       createdAt: true,
     },
-  });
-};
+  })
+}

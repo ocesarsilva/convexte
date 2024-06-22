@@ -1,9 +1,9 @@
-import { env } from "@/env";
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { env } from "@/env"
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs))
 }
 
 export const getExceptionType = (error: unknown) => {
@@ -11,20 +11,20 @@ export const getExceptionType = (error: unknown) => {
     type: "UnknownException",
     status: 500,
     message: "An unknown error occurred",
-  };
+  }
 
-  if (!error) return UnknownException;
+  if (!error) return UnknownException
 
   if ((error as Record<string, unknown>).name === "DatabaseError") {
     return {
       type: "DatabaseException",
       status: 400,
       message: "Duplicate key entry",
-    };
+    }
   }
 
-  return UnknownException;
-};
+  return UnknownException
+}
 
 export function formatDate(
   date: Date | string | number,
@@ -36,7 +36,7 @@ export function formatDate(
 ) {
   return new Intl.DateTimeFormat("en-US", {
     ...options,
-  }).format(new Date(date));
+  }).format(new Date(date))
 }
 
 export function formatPrice(price: number | string, options: Intl.NumberFormatOptions = {}) {
@@ -45,9 +45,9 @@ export function formatPrice(price: number | string, options: Intl.NumberFormatOp
     currency: options.currency ?? "USD",
     notation: options.notation ?? "compact",
     ...options,
-  }).format(Number(price));
+  }).format(Number(price))
 }
 
 export function absoluteUrl(path: string) {
-  return new URL(path, env.NEXT_PUBLIC_APP_URL).href;
+  return new URL(path, env.NEXT_PUBLIC_APP_URL).href
 }

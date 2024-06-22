@@ -2,9 +2,9 @@
 const config = {
   plugins: ["prettier-plugin-tailwindcss"],
   tabWidth: 2,
-  semi: true,
+  semi: false,
   singleQuote: false,
   printWidth: 100,
-};
+}
 
-export default config;
+export default config

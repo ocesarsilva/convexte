@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import { forwardRef } from "react";
-import { AnimatedSpinner } from "@/components/icons";
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { forwardRef } from "react"
+import { AnimatedSpinner } from "@/components/icons"
+import { Button, type ButtonProps } from "@/components/ui/button"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 export interface LoadingButtonProps extends ButtonProps {
-  loading?: boolean;
+  loading?: boolean
 }
 
 const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>(
@@ -26,10 +26,10 @@ const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>(
           </div>
         ) : null}
       </Button>
-    );
+    )
   },
-);
+)
 
-LoadingButton.displayName = "LoadingButton";
+LoadingButton.displayName = "LoadingButton"
 
-export { LoadingButton };
+export { LoadingButton }
