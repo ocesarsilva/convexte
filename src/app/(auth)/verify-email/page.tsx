@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { redirect } from "next/navigation";
 import { validateRequest } from "@/lib/auth/validate-request";
 import { VerifyCode } from "./verify-code";
@@ -26,8 +20,8 @@ export default async function VerifyEmailPage() {
       <CardHeader>
         <CardTitle>Verify Email</CardTitle>
         <CardDescription>
-          Verification code was sent to <strong>{user.email}</strong>. Check
-          your spam folder if you can't find the email.
+          Verification code was sent to <strong>{user.email}</strong>. Check your spam folder if you
+          can't find the email.
         </CardDescription>
       </CardHeader>
       <CardContent>

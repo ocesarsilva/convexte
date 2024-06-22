@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  useState,
-  type ReactNode,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import { useState, type ReactNode, type Dispatch, type SetStateAction } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -56,9 +51,7 @@ export const ResponsiveDialog = (props: {
           <DialogTitle>{props.title}</DialogTitle>
           <DialogDescription>{props.description}</DialogDescription>
         </DialogHeader>
-        {isFunctionType(props.children)
-          ? props.children({ open, setOpen })
-          : props.children}
+        {isFunctionType(props.children) ? props.children({ open, setOpen }) : props.children}
       </DialogContent>
       {props.footer ? <DialogFooter>{props.footer}</DialogFooter> : null}
     </Dialog>
@@ -71,9 +64,7 @@ export const ResponsiveDialog = (props: {
           <DrawerDescription>{props.description}</DrawerDescription>
         </DrawerHeader>
         <div className={cn("px-4", props.contentClassName)}>
-          {isFunctionType(props.children)
-            ? props.children({ open, setOpen })
-            : props.children}
+          {isFunctionType(props.children) ? props.children({ open, setOpen }) : props.children}
         </div>
         <DrawerFooter className="pt-2">
           {props.footer ? (
