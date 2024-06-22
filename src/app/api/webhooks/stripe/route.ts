@@ -5,7 +5,7 @@ import type Stripe from "stripe"
 import { env } from "@/env"
 import { stripe } from "@/lib/stripe"
 import { db } from "@/server/db"
-import { users } from "@/server/db/schema"
+import { user } from "@/server/db/schema"
 import { eq } from "drizzle-orm"
 
 export async function POST(req: Request) {
@@ -43,14 +43,14 @@ export async function POST(req: Request) {
       // Since this is the initial subscription, we need to update
       // the subscription id and customer id
       await db
-        .update(users)
+        .update(user)
         .set({
           stripeSubscriptionId: subscription.id,
           stripeCustomerId: subscription.customer as string,
           stripePriceId: subscription.items.data[0]?.price.id,
           stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
         })
-        .where(eq(users.id, userId))
+        .where(eq(user.id, userId))
 
       break
     }
@@ -72,12 +72,12 @@ export async function POST(req: Request) {
 
       // Update the price id and set the new period end
       await db
-        .update(users)
+        .update(user)
         .set({
           stripePriceId: subscription.items.data[0]?.price.id,
           stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
         })
-        .where(eq(users.id, userId))
+        .where(eq(user.id, userId))
 
       break
     }

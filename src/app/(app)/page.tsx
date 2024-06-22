@@ -9,7 +9,6 @@ import { Paths } from "@/lib/constants"
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Dashboard",
-  description: "Manage your posts here",
 }
 
 export default async function DashboardPage() {

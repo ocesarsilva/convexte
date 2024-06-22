@@ -6,7 +6,7 @@ import type { ManageSubscriptionInput } from "./stripe.input"
 
 export const getStripePlans = async (ctx: ProtectedTRPCContext) => {
   try {
-    const user = await ctx.db.query.users.findFirst({
+    const user = await ctx.db.query.user.findFirst({
       where: (table, { eq }) => eq(table.id, ctx.user.id),
       columns: {
         id: true,
@@ -38,7 +38,7 @@ export const getStripePlans = async (ctx: ProtectedTRPCContext) => {
 
 export const getStripePlan = async (ctx: ProtectedTRPCContext) => {
   try {
-    const user = await ctx.db.query.users.findFirst({
+    const user = await ctx.db.query.user.findFirst({
       where: (table, { eq }) => eq(table.id, ctx.user.id),
       columns: {
         stripePriceId: true,
@@ -86,7 +86,7 @@ export const manageSubscription = async (
 ) => {
   const billingUrl = absoluteUrl("/dashboard/billing")
 
-  const user = await ctx.db.query.users.findFirst({
+  const user = await ctx.db.query.user.findFirst({
     where: (table, { eq }) => eq(table.id, ctx.user.id),
     columns: {
       id: true,
