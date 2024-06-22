@@ -1,5 +1,5 @@
 {
-  "name": "next-lucia-auth",
+  "name": "convexte",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -33,7 +33,6 @@
     "@trpc/next": "^10.45.2",
     "@trpc/react-query": "^10.45.2",
     "@trpc/server": "^10.45.2",
-    "arctic": "^1.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "drizzle-orm": "^0.30.8",
