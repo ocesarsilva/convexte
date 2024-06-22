@@ -1,6 +1,7 @@
-import { boolean, index, timestamp, varchar } from "drizzle-orm/pg-core"
+import { boolean, index, text, timestamp, varchar } from "drizzle-orm/pg-core"
 
-import { pgTable } from "../utils"
+import { lifecycleDates, pgTable } from "../utils"
+import { company } from "./company"
 
 export const user = pgTable(
   "users",
@@ -10,12 +11,17 @@ export const user = pgTable(
     emailVerified: boolean("email_verified").default(false).notNull(),
     hashedPassword: varchar("hashed_password", { length: 255 }),
     avatar: varchar("avatar", { length: 255 }),
+
+    companyId: text("company_id")
+      .notNull()
+      .references(() => company.id, { onDelete: "cascade" }),
+
     stripeSubscriptionId: varchar("stripe_subscription_id", { length: 191 }),
     stripePriceId: varchar("stripe_price_id", { length: 191 }),
     stripeCustomerId: varchar("stripe_customer_id", { length: 191 }),
     stripeCurrentPeriodEnd: timestamp("stripe_current_period_end"),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" }).$onUpdate(() => new Date()),
+
+    ...lifecycleDates,
   },
   (t) => ({
     emailIdx: index("user_email_idx").on(t.email),
