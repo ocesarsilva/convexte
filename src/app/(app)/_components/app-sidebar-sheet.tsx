@@ -20,11 +20,10 @@ import { Icons } from "@/components/icons"
 
 export function AppSidebarSheet() {
   const { open, setOpen } = useSidebar()
+  const { data: company } = api.company.get.useQuery()
 
   const isDesktop = useMediaQuery("(min-width: 1024px)")
   if (isDesktop) return null
-
-  const { data: company } = api.company.get.useQuery()
 
   return (
     <Sheet onOpenChange={setOpen} open={open}>
