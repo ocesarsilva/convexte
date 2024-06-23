@@ -1,5 +1,6 @@
 import { forwardRef, type SVGProps } from "react"
 import { cn } from "@/lib/utils"
+import { Briefcase, Headset, House, MessageCircle, Settings, Webhook } from "lucide-react"
 
 const AnimatedSpinner = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
   ({ className, ...props }, ref) => (
@@ -77,3 +78,12 @@ export {
   DotsHorizontalIcon,
   ArrowLeftIcon,
 } from "@radix-ui/react-icons"
+
+export const Icons = {
+  webhook: Webhook,
+  house: House,
+  briefcase: Briefcase,
+  headset: Headset,
+  messagecircle: MessageCircle,
+  settings: Settings,
+}

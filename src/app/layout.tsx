@@ -11,9 +11,9 @@ import type { Metadata, Viewport } from "next"
 export const metadata: Metadata = {
   title: {
     default: APP_TITLE,
-    template: `%s | ${APP_TITLE}`,
+    template: `%s - ${APP_TITLE}`,
   },
-  description: "Acme - Simple auth with lucia and trpc",
+  description: `${APP_TITLE} - Gerencie seus leads de maneira mais rápida e inteligente.`,
   icons: [{ rel: "icon", url: "/icon.png" }],
 }
 

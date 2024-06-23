@@ -1,13 +1,15 @@
 import { redirect } from "next/navigation"
-import { VerificiationWarning } from "./_components/verificiation-warning"
 import { Paths } from "@/lib/constants"
 import { validateRequest } from "@/lib/auth/validate-request"
+import { AppSidebar } from "./_components/app-sidebar"
 
-interface DashboardLayoutProps {
+import { TooltipProvider } from "@/components/ui/tooltip"
+
+interface AppLayoutProps {
   children: React.ReactNode
 }
 
-export default async function DashboardLayout({ children }: DashboardLayoutProps) {
+export default async function AppLayout({ children }: AppLayoutProps) {
   const { user } = await validateRequest()
 
   if (!user) redirect(Paths.Login)
@@ -15,11 +17,13 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
   if (!user.companyId) redirect("/onboarding")
 
   return (
-    <div className="container min-h-[calc(100vh-180px)] px-2 pt-6 md:px-4">
-      <main className="w-full space-y-4">
-        <VerificiationWarning />
-        <div>{children}</div>
-      </main>
-    </div>
+    <TooltipProvider>
+      <div className="flex min-h-screen w-full flex-col">
+        <AppSidebar />
+        <div className="flex flex-col sm:pl-20">
+          <div className="min-h-screen flex-1">{children}</div>
+        </div>
+      </div>
+    </TooltipProvider>
   )
 }

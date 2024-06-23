@@ -34,6 +34,6 @@ const config = {
     ],
   },
   ignorePatterns: ["*.js"],
-};
+}
 
-module.exports = config;
+module.exports = config
