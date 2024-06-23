@@ -1,6 +1,7 @@
 "use client"
 
 import { forwardRef } from "react"
+import { Loader2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button, type ButtonProps } from "@/components/ui/button"
@@ -17,14 +18,13 @@ const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>(
         ref={ref}
         {...props}
         disabled={props.disabled ? props.disabled : loading}
-        className={cn(className, "relative")}
+        className={cn(className)}
       >
-        <span className={cn(loading ? "opacity-0" : "")}>{children}</span>
         {loading ? (
-          <div className="absolute inset-0 grid place-items-center">
-            <AnimatedSpinner className="h-6 w-6" />
-          </div>
-        ) : null}
+          <Loader2 className="size-4 animate-spin" />
+        ) : (
+          <>{children}</>
+        )}
       </Button>
     )
   }

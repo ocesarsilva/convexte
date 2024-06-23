@@ -1,7 +1,10 @@
 import { company, user } from "@/server/db/schema"
 import { generateId } from "lucia"
 
-import { type CreateCompanySchema } from "@/lib/validators/company"
+import {
+  type CreateCompanySchema,
+  type UpdateCompanySchema,
+} from "@/lib/validators/company"
 
 import { type ProtectedTRPCContext } from "../../trpc"
 
@@ -46,4 +49,24 @@ export async function getCompany(ctx: ProtectedTRPCContext) {
   })
 
   return company
+}
+
+export async function updateCompany(
+  ctx: ProtectedTRPCContext,
+  input: UpdateCompanySchema
+) {
+  const companyId = ctx.user.companyId
+
+  if (!companyId) {
+    throw new Error("Não foi possível encontrar sua empresa.")
+  }
+
+  const [item] = await ctx.db
+    .update(company)
+    .set({
+      name: input.name,
+    })
+    .returning()
+
+  return item
 }
