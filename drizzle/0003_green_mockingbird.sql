@@ -1,0 +1,1 @@
+ALTER TABLE "acme_users" ALTER COLUMN "company_id" DROP NOT NULL;

@@ -17,8 +17,10 @@ export default async function ForgotPasswordPage() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Forgot password?</CardTitle>
-        <CardDescription>Password reset link will be sent to your email.</CardDescription>
+        <CardTitle>Esqueceu sua senha?</CardTitle>
+        <CardDescription>
+          O link de redefinição de senha será enviado para seu e-mail.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <SendResetEmail />

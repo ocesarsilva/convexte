@@ -22,20 +22,20 @@ const getEmailTemplate = <T extends EmailTemplate>(template: T, props: PropsMap[
   switch (template) {
     case EmailTemplate.EmailVerification:
       return {
-        subject: "Verify your email address",
+        subject: "Verifique seu endereço de e-mail",
         body: render(
           <EmailVerificationTemplate {...(props as PropsMap[EmailTemplate.EmailVerification])} />,
         ),
       }
     case EmailTemplate.PasswordReset:
       return {
-        subject: "Reset your password",
+        subject: "Redefinir sua senha",
         body: render(
           <ResetPasswordTemplate {...(props as PropsMap[EmailTemplate.PasswordReset])} />,
         ),
       }
     default:
-      throw new Error("Invalid email template")
+      throw new Error("Modelo de e-mail inválido")
   }
 }
 

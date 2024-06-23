@@ -18,27 +18,27 @@ export const ResetPasswordTemplate = ({ link }: ResetPasswordTemplateProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Reset your password</Preview>
+      <Preview>Redefinir sua senha</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section>
             <Text style={title}>{APP_TITLE}</Text>
-            <Text style={text}>Hi,</Text>
+            <Text style={text}>Olá,,</Text>
             <Text style={text}>
-              Someone recently requested a password change for your {APP_TITLE} account. If this was
-              you, you can set a new password here:
+              Recentemente, alguém solicitou uma alteração de senha da sua conta {APP_TITLE}. Se
+              isso fosse você, você pode definir uma nova senha aqui:
             </Text>
             <Button style={button} href={link}>
-              Reset password
+              Redefinir senha
             </Button>
             <Text style={text}>
-              If you don&apos;t want to change your password or didn&apos;t request this, just
-              ignore and delete this message.
+              Se você não quiser alterar sua senha ou não solicitou isso, basta ignore e exclua esta
+              mensagem.
             </Text>
             <Text style={text}>
-              To keep your account secure, please don&apos;t forward this email to anyone.
+              Para manter sua conta segura, não encaminhe este e-mail para ninguém.
             </Text>
-            <Text style={text}>Have a nice day!</Text>
+            <Text style={text}>Tenha um bom dia!</Text>
           </Section>
         </Container>
       </Body>

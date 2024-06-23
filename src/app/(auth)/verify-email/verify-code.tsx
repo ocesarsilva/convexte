@@ -41,12 +41,12 @@ export const VerifyCode = () => {
       </form>
       <form action={resendAction}>
         <SubmitButton className="w-full" variant="secondary">
-          Resend Code
+          Reenviar código
         </SubmitButton>
       </form>
       <form action={logout}>
         <SubmitButton variant="link" className="p-0 font-normal">
-          want to use another email? Log out now.
+          deseja usar outro e-mail? Saia agora.
         </SubmitButton>
       </form>
     </div>

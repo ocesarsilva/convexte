@@ -20,8 +20,8 @@ export default async function BillingPage() {
   return (
     <div className="grid gap-8">
       <div>
-        <h1 className="text-3xl font-bold md:text-4xl">Settings</h1>
-        <p className="text-sm text-muted-foreground">Manage your account settings</p>
+        <h1 className="text-3xl font-bold md:text-4xl">Configurações</h1>
+        <p className="text-sm text-muted-foreground">Gerencie as configurações da sua conta</p>
       </div>
       <p>Work in progress...</p>
     </div>

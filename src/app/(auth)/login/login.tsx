@@ -17,8 +17,8 @@ export function Login() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
-        <CardTitle>{APP_TITLE} Log In</CardTitle>
-        <CardDescription>Log in to your account to access your dashboard</CardDescription>
+        <CardTitle>Acessar conta {APP_TITLE}</CardTitle>
+        <CardDescription>Faça login em sua conta para acessar seu painel</CardDescription>
       </CardHeader>
       <CardContent>
         <form action={formAction} className="grid gap-4">
@@ -34,7 +34,7 @@ export function Login() {
           </div>
 
           <div className="space-y-2">
-            <Label>Password</Label>
+            <Label>Senha</Label>
             <PasswordInput
               name="password"
               required
@@ -65,10 +65,7 @@ export function Login() {
               {state?.formError}
             </p>
           ) : null}
-          <SubmitButton className="w-full">Log In</SubmitButton>
-          <Button variant="outline" className="w-full" asChild>
-            <Link href="/">Cancel</Link>
-          </Button>
+          <SubmitButton className="w-full">Entrar</SubmitButton>
         </form>
       </CardContent>
     </Card>

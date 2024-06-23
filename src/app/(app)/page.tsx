@@ -1,10 +1,7 @@
-import { redirect } from "next/navigation"
 import { env } from "@/env"
 
 import { type Metadata } from "next"
 import * as React from "react"
-import { validateRequest } from "@/lib/auth/validate-request"
-import { Paths } from "@/lib/constants"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -12,9 +9,6 @@ export const metadata: Metadata = {
 }
 
 export default async function DashboardPage() {
-  const { user } = await validateRequest()
-  if (!user) redirect(Paths.Login)
-
   return (
     <div>
       <div className="mb-6">

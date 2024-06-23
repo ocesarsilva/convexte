@@ -13,14 +13,14 @@ export async function VerificiationWarning() {
       <ExclamationTriangleIcon className="h-5 w-5 !text-yellow-700 dark:!text-yellow-400" />
       <div className="flex lg:items-center">
         <div className="w-full">
-          <AlertTitle>Account verification required</AlertTitle>
+          <AlertTitle>Verificação da conta necessária</AlertTitle>
           <AlertDescription>
-            A verification email has been sent to your email address. Please verify your account to
-            access all features.
+            Um e-mail de verificação foi enviado para o seu endereço de e-mail. Por favor, verifique
+            sua conta para acessar todos os recursos.
           </AlertDescription>
         </div>
         <Button size="sm" asChild>
-          <Link href="/verify-email">Verify Email</Link>
+          <Link href="/verify-email">Verificar e-mail</Link>
         </Button>
       </div>
     </Alert>

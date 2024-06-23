@@ -51,20 +51,20 @@ export async function login(_: any, formData: FormData): Promise<ActionResponse<
 
   if (!existingUser) {
     return {
-      formError: "Incorrect email or password",
+      formError: "Senha ou email incorretos",
     }
   }
 
   if (!existingUser || !existingUser?.hashedPassword) {
     return {
-      formError: "Incorrect email or password",
+      formError: "Senha ou email incorretos",
     }
   }
 
   const validPassword = await new Scrypt().verify(existingUser.hashedPassword, password)
   if (!validPassword) {
     return {
-      formError: "Incorrect email or password",
+      formError: "Senha ou email incorretos",
     }
   }
 
@@ -97,7 +97,7 @@ export async function signup(_: any, formData: FormData): Promise<ActionResponse
 
   if (existingUser) {
     return {
-      formError: "Cannot create account with that email",
+      formError: "Não é possível criar conta com esse e-mail",
     }
   }
 
@@ -122,7 +122,7 @@ export async function logout(): Promise<{ error: string } | void> {
   const { session } = await validateRequest()
   if (!session) {
     return {
-      error: "No session found",
+      error: "Nenhuma sessão encontrada",
     }
   }
   await lucia.invalidateSession(session.id)
@@ -146,7 +146,7 @@ export async function resendVerificationEmail(): Promise<{
 
   if (lastSent && isWithinExpirationDate(lastSent.expiresAt)) {
     return {
-      error: `Please wait ${timeFromNow(lastSent.expiresAt)} before resending`,
+      error: `Por favor, aguarde ${timeFromNow(lastSent.expiresAt)} antes de reenviar`,
     }
   }
   const verificationCode = await generateEmailVerificationCode(user.id, user.email)
@@ -158,7 +158,7 @@ export async function resendVerificationEmail(): Promise<{
 export async function verifyEmail(_: any, formData: FormData): Promise<{ error: string } | void> {
   const code = formData.get("code")
   if (typeof code !== "string" || code.length !== 8) {
-    return { error: "Invalid code" }
+    return { error: "Código inválido" }
   }
   const { user: currentUser } = await validateRequest()
   if (!currentUser) {
@@ -175,11 +175,11 @@ export async function verifyEmail(_: any, formData: FormData): Promise<{ error: 
     return item
   })
 
-  if (!dbCode || dbCode.code !== code) return { error: "Invalid verification code" }
+  if (!dbCode || dbCode.code !== code) return { error: "Código de verificação inválido" }
 
-  if (!isWithinExpirationDate(dbCode.expiresAt)) return { error: "Verification code expired" }
+  if (!isWithinExpirationDate(dbCode.expiresAt)) return { error: "O código de verificação expirou" }
 
-  if (dbCode.email !== currentUser.email) return { error: "Email does not match" }
+  if (dbCode.email !== currentUser.email) return { error: "E-mail não corresponde" }
 
   await lucia.invalidateUserSessions(currentUser.id)
   await db.update(user).set({ emailVerified: true }).where(eq(user.id, user.id))
@@ -196,14 +196,15 @@ export async function sendPasswordResetLink(
   const email = formData.get("email")
   const parsed = z.string().trim().email().safeParse(email)
   if (!parsed.success) {
-    return { error: "Provided email is invalid." }
+    return { error: "O e-mail fornecido é inválido." }
   }
   try {
     const currentUser = await db.query.user.findFirst({
       where: (table, { eq }) => eq(table.email, parsed.data),
     })
 
-    if (!currentUser || !currentUser.emailVerified) return { error: "Provided email is invalid." }
+    if (!currentUser || !currentUser.emailVerified)
+      return { error: "O e-mail fornecido é inválido." }
 
     const verificationToken = await generatePasswordResetToken(currentUser.id)
 
@@ -213,7 +214,7 @@ export async function sendPasswordResetLink(
 
     return { success: true }
   } catch (error) {
-    return { error: "Failed to send verification email." }
+    return { error: "Falha ao enviar e-mail de verificação." }
   }
 }
 
@@ -243,9 +244,10 @@ export async function resetPassword(
     return item
   })
 
-  if (!dbToken) return { error: "Invalid password reset link" }
+  if (!dbToken) return { error: "Link de redefinição de senha inválido" }
 
-  if (!isWithinExpirationDate(dbToken.expiresAt)) return { error: "Password reset link expired." }
+  if (!isWithinExpirationDate(dbToken.expiresAt))
+    return { error: "O link de redefinição de senha expirou." }
 
   await lucia.invalidateUserSessions(dbToken.userId)
   const hashedPassword = await new Scrypt().hash(password)

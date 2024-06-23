@@ -29,12 +29,12 @@ export function ManageSubscriptionForm({
         })
 
         if (session) {
-          window.location.href = session.url ?? "/dashboard/billing"
+          window.location.href = session.url ?? "/billing"
         }
       } catch (err) {
         err instanceof Error
           ? toast.error(err.message)
-          : toast.error("An error occurred. Please try again.")
+          : toast.error("Um erro ocorreu. Por favor, tente novamente.")
       }
     })
   }

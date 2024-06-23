@@ -10,8 +10,8 @@ export default function ResetPasswordPage({ params }: { params: { token: string 
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="space-y-1">
-        <CardTitle>Reset password</CardTitle>
-        <CardDescription>Enter new password.</CardDescription>
+        <CardTitle>Redefinir senha</CardTitle>
+        <CardDescription>Insira a nova senha.</CardDescription>
       </CardHeader>
       <CardContent>
         <ResetPassword token={params.token} />

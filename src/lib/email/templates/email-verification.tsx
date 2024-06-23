@@ -9,19 +9,19 @@ export const EmailVerificationTemplate = ({ code }: EmailVerificationTemplatePro
   return (
     <Html>
       <Head />
-      <Preview>Verify your email address to complete your {APP_TITLE} registration</Preview>
+      <Preview>Verifique seu endereço de e-mail para concluir o registro do {APP_TITLE}</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section>
             <Text style={title}>{APP_TITLE}</Text>
             <Text style={text}>Hi,</Text>
             <Text style={text}>
-              Thank you for registering for an account on {APP_TITLE}. To complete your
-              registration, please verify your your account by using the following code:
+              Obrigado por registrar uma conta no {APP_TITLE}. Para completar seu registro,
+              verifique sua conta usando o seguinte código:
             </Text>
             <Text style={codePlaceholder}>{code}</Text>
 
-            <Text style={text}>Have a nice day!</Text>
+            <Text style={text}>Tenha um bom dia!</Text>
           </Section>
         </Container>
       </Body>

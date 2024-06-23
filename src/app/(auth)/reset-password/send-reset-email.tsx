@@ -19,7 +19,7 @@ export function SendResetEmail() {
 
   useEffect(() => {
     if (state?.success) {
-      toast("A password reset link has been sent to your email.")
+      toast("Um link de redefinição de senha foi enviado para seu e-mail.")
       router.push(Paths.Login)
     }
     if (state?.error) {
@@ -32,7 +32,7 @@ export function SendResetEmail() {
   return (
     <form className="space-y-4" action={formAction}>
       <div className="space-y-2">
-        <Label>Your Email</Label>
+        <Label>Seu email</Label>
         <Input
           required
           placeholder="email@example.com"
@@ -45,14 +45,14 @@ export function SendResetEmail() {
       <div className="flex flex-wrap justify-between">
         <Link href={Paths.Signup}>
           <Button variant={"link"} size={"sm"} className="p-0">
-            Not signed up? Sign up now
+            Não se inscreveu? Inscreva-se agora
           </Button>
         </Link>
       </div>
 
-      <SubmitButton className="w-full">Reset Password</SubmitButton>
+      <SubmitButton className="w-full">Redefinir senha</SubmitButton>
       <Button variant="outline" className="w-full" asChild>
-        <Link href="/">Cancel</Link>
+        <Link href="/">Cancelar</Link>
       </Button>
     </form>
   )

@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom"
 import Link from "next/link"
 import { PasswordInput } from "@/components/password-input"
-import { Button } from "@/components/ui/button"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { APP_TITLE } from "@/lib/constants"
@@ -17,8 +17,8 @@ export function Signup() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
-        <CardTitle>{APP_TITLE} Sign Up</CardTitle>
-        <CardDescription>Sign up to start using the app</CardDescription>
+        <CardTitle>Cria sua conta no {APP_TITLE}</CardTitle>
+        <CardDescription>Cadastre-se para começar a usar o aplicativo</CardDescription>
       </CardHeader>
       <CardContent>
         <form action={formAction} className="space-y-4">
@@ -33,7 +33,7 @@ export function Signup() {
             />
           </div>
           <div className="space-y-2">
-            <Label>Password</Label>
+            <Label>Senha</Label>
             <PasswordInput
               name="password"
               required
@@ -58,15 +58,12 @@ export function Signup() {
           <div>
             <Link href={"/login"}>
               <span className="p-0 text-xs font-medium underline-offset-4 hover:underline">
-                Already signed up? Login instead.
+                Já se inscreveu? Em vez disso, faça login.
               </span>
             </Link>
           </div>
 
-          <SubmitButton className="w-full"> Sign Up</SubmitButton>
-          <Button variant="outline" className="w-full" asChild>
-            <Link href="/">Cancel</Link>
-          </Button>
+          <SubmitButton className="w-full">Inscrever-se</SubmitButton>
         </form>
       </CardContent>
     </Card>

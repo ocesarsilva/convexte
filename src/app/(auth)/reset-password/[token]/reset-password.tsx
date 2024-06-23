@@ -24,7 +24,7 @@ export function ResetPassword({ token }: { token: string }) {
     <form action={formAction} className="space-y-4">
       <input type="hidden" name="token" value={token} />
       <div className="space-y-2">
-        <Label>New Password</Label>
+        <Label>Nova senha</Label>
         <PasswordInput
           name="password"
           required
@@ -32,7 +32,7 @@ export function ResetPassword({ token }: { token: string }) {
           placeholder="********"
         />
       </div>
-      <SubmitButton className="w-full">Reset Password</SubmitButton>
+      <SubmitButton className="w-full">Redefinir senha</SubmitButton>
     </form>
   )
 }

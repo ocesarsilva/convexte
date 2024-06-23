@@ -51,3 +51,15 @@ export function formatPrice(price: number | string, options: Intl.NumberFormatOp
 export function absoluteUrl(path: string) {
   return new URL(path, env.NEXT_PUBLIC_APP_URL).href
 }
+
+export function slugify(str: string) {
+  return str
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/--+/g, "-")
+}
+
+export function unslugify(str: string) {
+  return str.replace(/-/g, " ")
+}
