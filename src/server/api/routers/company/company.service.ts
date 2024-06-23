@@ -33,3 +33,17 @@ export const createPost = async (
 
   return { id: companyId }
 }
+
+export async function getCompany(ctx: ProtectedTRPCContext) {
+  const companyId = ctx.user.companyId
+
+  if (!companyId) {
+    throw new Error("Não foi possível encontrar sua empresa.")
+  }
+
+  const company = await ctx.db.query.company.findFirst({
+    where: (table, { eq }) => eq(table.id, companyId),
+  })
+
+  return company
+}

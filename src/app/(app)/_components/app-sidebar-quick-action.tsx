@@ -1,0 +1,17 @@
+import { PenSquare, Search } from "lucide-react"
+
+export function AppSidebarQuickAction() {
+  return (
+    <div className="my-2 flex w-full flex-col items-center gap-2">
+      <button className="flex h-8 w-full items-center justify-center rounded text-muted-foreground transition-colors hover:bg-accent hover:text-foreground">
+        <PenSquare className="size-4" />
+        <span className="sr-only">Adicionar novo lead</span>
+      </button>
+
+      <button className="flex h-8 w-full items-center justify-center rounded text-muted-foreground transition-colors hover:bg-accent hover:text-foreground">
+        <Search className="size-4" />
+        <span className="sr-only">Procurar</span>
+      </button>
+    </div>
+  )
+}

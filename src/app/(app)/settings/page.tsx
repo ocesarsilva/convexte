@@ -3,11 +3,13 @@ import { redirect } from "next/navigation"
 import { env } from "@/env"
 
 import { validateRequest } from "@/lib/auth/validate-request"
+import { Icons } from "@/components/icons"
+import { PageHead } from "@/components/page-head"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: "Billing",
-  description: "Manage your billing and subscription",
+  title: "Configurações",
+  description: "Gerencie seu as configurações da sua empresa.",
 }
 
 export default async function BillingPage() {
@@ -18,14 +20,11 @@ export default async function BillingPage() {
   }
 
   return (
-    <div className="grid gap-8">
-      <div>
-        <h1 className="text-3xl font-bold md:text-4xl">Configurações</h1>
-        <p className="text-sm text-muted-foreground">
-          Gerencie as configurações da sua conta
-        </p>
-      </div>
-      <p>Work in progress...</p>
+    <div className="flex-1">
+      <PageHead
+        title="Configurações"
+        icon={<Icons.settings className="size-4" />}
+      />
     </div>
   )
 }

@@ -32,5 +32,11 @@ export const appConfig = {
       icon: "headset",
       segment: "help",
     },
+    {
+      title: "Configuração",
+      href: "/settings",
+      icon: "settings",
+      segment: "settings",
+    },
   ] satisfies NavItem[],
 }

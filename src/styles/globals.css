@@ -23,7 +23,7 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
-    --radius: 1rem;
+    --radius: 0.5rem;
   }
 
   .dark {
@@ -58,51 +58,18 @@
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .zoom-image [data-rmiz-modal-overlay="visible"] {
+    @apply bg-background/10 backdrop-blur;
+  }
+
+  .zoom-image [data-rmiz-modal-img] {
+    @apply rounded-md lg:rounded-2xl;
   }
 }
 
-.animated-spinner {
-  transform-origin: center;
-  animation: loader-spin 0.75s step-end infinite;
-}
-@keyframes loader-spin {
-  8.3% {
-    transform: rotate(30deg);
-  }
-  16.6% {
-    transform: rotate(60deg);
-  }
-  25% {
-    transform: rotate(90deg);
-  }
-  33.3% {
-    transform: rotate(120deg);
-  }
-  41.6% {
-    transform: rotate(150deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  58.3% {
-    transform: rotate(210deg);
-  }
-  66.6% {
-    transform: rotate(240deg);
-  }
-  75% {
-    transform: rotate(270deg);
-  }
-  83.3% {
-    transform: rotate(300deg);
-  }
-  91.6% {
-    transform: rotate(330deg);
-  }
-  100% {
-    transform: rotate(360deg);
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
   }
 }

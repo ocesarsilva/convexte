@@ -3,6 +3,7 @@ import {
   Briefcase,
   Headset,
   House,
+  LogOut,
   MessageCircle,
   Settings,
   Webhook,
@@ -129,4 +130,5 @@ export const Icons = {
   headset: Headset,
   messagecircle: MessageCircle,
   settings: Settings,
+  logout: LogOut,
 }
