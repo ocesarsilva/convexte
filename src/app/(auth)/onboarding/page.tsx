@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 
 import { validateRequest } from "@/lib/auth/validate-request"
 import { Paths } from "@/lib/constants"
+
 import { Onboarding } from "./_components/onboarding"
 
 export const metadata: Metadata = {

@@ -1,23 +1,36 @@
-import { Body, Container, Head, Html, Preview, Section, Text } from "@react-email/components"
+import {
+  Body,
+  Container,
+  Head,
+  Html,
+  Preview,
+  Section,
+  Text,
+} from "@react-email/components"
+
 import { APP_TITLE } from "@/lib/constants"
 
 export interface EmailVerificationTemplateProps {
   code: string
 }
 
-export const EmailVerificationTemplate = ({ code }: EmailVerificationTemplateProps) => {
+export const EmailVerificationTemplate = ({
+  code,
+}: EmailVerificationTemplateProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Verifique seu endereço de e-mail para concluir o registro do {APP_TITLE}</Preview>
+      <Preview>
+        Verifique seu endereço de e-mail para concluir o registro do {APP_TITLE}
+      </Preview>
       <Body style={main}>
         <Container style={container}>
           <Section>
             <Text style={title}>{APP_TITLE}</Text>
             <Text style={text}>Hi,</Text>
             <Text style={text}>
-              Obrigado por registrar uma conta no {APP_TITLE}. Para completar seu registro,
-              verifique sua conta usando o seguinte código:
+              Obrigado por registrar uma conta no {APP_TITLE}. Para completar
+              seu registro, verifique sua conta usando o seguinte código:
             </Text>
             <Text style={codePlaceholder}>{code}</Text>
 

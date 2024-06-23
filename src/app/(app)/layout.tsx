@@ -1,9 +1,10 @@
 import { redirect } from "next/navigation"
-import { Paths } from "@/lib/constants"
-import { validateRequest } from "@/lib/auth/validate-request"
-import { AppSidebar } from "./_components/app-sidebar"
 
+import { validateRequest } from "@/lib/auth/validate-request"
+import { Paths } from "@/lib/constants"
 import { TooltipProvider } from "@/components/ui/tooltip"
+
+import { AppSidebar } from "./_components/app-sidebar"
 
 interface AppLayoutProps {
   children: React.ReactNode

@@ -1,7 +1,7 @@
 import Link from "next/link"
+import { type RouterOutputs } from "@/trpc/shared"
 
-import { CheckIcon } from "@/components/icons"
-
+import { formatDate } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -11,12 +11,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { formatDate } from "@/lib/utils"
-import { type RouterOutputs } from "@/trpc/shared"
+import { CheckIcon } from "@/components/icons"
+
 import { ManageSubscriptionForm } from "./manage-subscription-form"
 
 interface BillingProps {
-  stripePromises: Promise<[RouterOutputs["stripe"]["getPlans"], RouterOutputs["stripe"]["getPlan"]]>
+  stripePromises: Promise<
+    [RouterOutputs["stripe"]["getPlans"], RouterOutputs["stripe"]["getPlan"]]
+  >
 }
 
 export async function Billing({ stripePromises }: BillingProps) {
@@ -26,14 +28,18 @@ export async function Billing({ stripePromises }: BillingProps) {
     <>
       <section>
         <Card className="space-y-2 p-8">
-          <h3 className="text-lg font-semibold sm:text-xl">{plan?.name ?? "Free"} plan</h3>
+          <h3 className="text-lg font-semibold sm:text-xl">
+            {plan?.name ?? "Free"} plan
+          </h3>
           <p className="text-sm text-muted-foreground">
             {!plan?.isPro
               ? "The free plan is limited to 2 pipelines. Upgrade to the Pro plan to unlock unlimited pipelines."
               : plan.isCanceled
                 ? "Your plan will be canceled on "
                 : "Your plan renews on "}
-            {plan?.stripeCurrentPeriodEnd ? formatDate(plan.stripeCurrentPeriodEnd) : null}
+            {plan?.stripeCurrentPeriodEnd
+              ? formatDate(plan.stripeCurrentPeriodEnd)
+              : null}
           </p>
         </Card>
       </section>
@@ -42,12 +48,16 @@ export async function Billing({ stripePromises }: BillingProps) {
           <Card key={item.name} className="flex flex-col p-2">
             <CardHeader className="h-full">
               <CardTitle className="line-clamp-1">{item.name}</CardTitle>
-              <CardDescription className="line-clamp-2">{item.description}</CardDescription>
+              <CardDescription className="line-clamp-2">
+                {item.description}
+              </CardDescription>
             </CardHeader>
             <CardContent className="h-full flex-1 space-y-6">
               <div className="text-3xl font-bold">
                 {item.price}
-                <span className="text-sm font-normal text-muted-foreground">/month</span>
+                <span className="text-sm font-normal text-muted-foreground">
+                  /month
+                </span>
               </div>
               <div className="space-y-2">
                 {item.features.map((feature) => (
@@ -55,7 +65,9 @@ export async function Billing({ stripePromises }: BillingProps) {
                     <div className="aspect-square shrink-0 rounded-full bg-foreground p-px text-background">
                       <CheckIcon className="size-4" aria-hidden="true" />
                     </div>
-                    <span className="text-sm text-muted-foreground">{feature}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>

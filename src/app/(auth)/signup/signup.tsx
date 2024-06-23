@@ -1,14 +1,20 @@
 "use client"
 
-import { useFormState } from "react-dom"
 import Link from "next/link"
-import { PasswordInput } from "@/components/password-input"
+import { useFormState } from "react-dom"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { APP_TITLE } from "@/lib/constants"
-import { Label } from "@/components/ui/label"
 import { signup } from "@/lib/auth/actions"
+import { APP_TITLE } from "@/lib/constants"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { PasswordInput } from "@/components/password-input"
 import { SubmitButton } from "@/components/submit-button"
 
 export function Signup() {
@@ -18,7 +24,9 @@ export function Signup() {
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
         <CardTitle>Cria sua conta no {APP_TITLE}</CardTitle>
-        <CardDescription>Cadastre-se para começar a usar o aplicativo</CardDescription>
+        <CardDescription>
+          Cadastre-se para começar a usar o aplicativo
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form action={formAction} className="space-y-4">

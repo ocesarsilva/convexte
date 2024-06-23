@@ -1,16 +1,18 @@
 "use client"
 
 import * as React from "react"
-
 import Link from "next/link"
-
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { appConfig } from "@/config/app"
-import { Icons } from "@/components/icons"
 import { useSelectedLayoutSegment } from "next/navigation"
-import { cn } from "@/lib/utils"
-
 import { PenSquare, Search } from "lucide-react"
+
+import { appConfig } from "@/config/app"
+import { cn } from "@/lib/utils"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { Icons } from "@/components/icons"
 
 export function AppSidebar() {
   const segment = useSelectedLayoutSegment()
@@ -22,7 +24,9 @@ export function AppSidebar() {
           href="#"
           className="flex size-6 items-center justify-center rounded bg-primary text-base font-semibold text-primary-foreground"
         >
-          <span className="flex size-2 items-center justify-center text-center text-sm">C</span>
+          <span className="flex size-2 items-center justify-center text-center text-sm">
+            C
+          </span>
           <span className="sr-only">Acme Inc</span>
         </Link>
 
@@ -49,7 +53,7 @@ export function AppSidebar() {
                   href="#"
                   className={cn(
                     "flex h-8 w-full items-center justify-center rounded text-muted-foreground transition-colors hover:bg-accent hover:text-foreground",
-                    { "bg-accent/50 text-accent-foreground": active },
+                    { "bg-accent/50 text-accent-foreground": active }
                   )}
                 >
                   <Icon className="size-4" />
@@ -68,7 +72,9 @@ export function AppSidebar() {
               href="#"
               className={cn(
                 "flex h-8 w-full items-center justify-center rounded text-muted-foreground transition-colors hover:bg-accent hover:text-foreground",
-                { "bg-accent/50 text-accent-foreground": segment === "settings" },
+                {
+                  "bg-accent/50 text-accent-foreground": segment === "settings",
+                }
               )}
             >
               <Icons.settings className="size-4" />

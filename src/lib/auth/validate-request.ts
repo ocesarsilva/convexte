@@ -1,6 +1,7 @@
 import { cache } from "react"
 import { cookies } from "next/headers"
 import type { Session, User } from "lucia"
+
 import { lucia } from "@/lib/auth"
 
 export const uncachedValidateRequest = async (): Promise<
@@ -15,11 +16,19 @@ export const uncachedValidateRequest = async (): Promise<
   try {
     if (result.session && result.session.fresh) {
       const sessionCookie = lucia.createSessionCookie(result.session.id)
-      cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
+      cookies().set(
+        sessionCookie.name,
+        sessionCookie.value,
+        sessionCookie.attributes
+      )
     }
     if (!result.session) {
       const sessionCookie = lucia.createBlankSessionCookie()
-      cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
+      cookies().set(
+        sessionCookie.name,
+        sessionCookie.value,
+        sessionCookie.attributes
+      )
     }
   } catch {
     console.error("Failed to set session cookie")

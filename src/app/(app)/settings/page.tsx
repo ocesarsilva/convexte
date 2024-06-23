@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
-
 import { env } from "@/env"
+
 import { validateRequest } from "@/lib/auth/validate-request"
 
 export const metadata: Metadata = {
@@ -21,7 +21,9 @@ export default async function BillingPage() {
     <div className="grid gap-8">
       <div>
         <h1 className="text-3xl font-bold md:text-4xl">Configurações</h1>
-        <p className="text-sm text-muted-foreground">Gerencie as configurações da sua conta</p>
+        <p className="text-sm text-muted-foreground">
+          Gerencie as configurações da sua conta
+        </p>
       </div>
       <p>Work in progress...</p>
     </div>

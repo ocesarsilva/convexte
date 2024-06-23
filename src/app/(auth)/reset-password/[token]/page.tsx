@@ -1,4 +1,11 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
 import { ResetPassword } from "./reset-password"
 
 export const metadata = {
@@ -6,7 +13,11 @@ export const metadata = {
   description: "Reset Password Page",
 }
 
-export default function ResetPasswordPage({ params }: { params: { token: string } }) {
+export default function ResetPasswordPage({
+  params,
+}: {
+  params: { token: string }
+}) {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="space-y-1">

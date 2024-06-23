@@ -32,14 +32,17 @@ export function formatDate(
     month: "long",
     day: "numeric",
     year: "numeric",
-  },
+  }
 ) {
   return new Intl.DateTimeFormat("en-US", {
     ...options,
   }).format(new Date(date))
 }
 
-export function formatPrice(price: number | string, options: Intl.NumberFormatOptions = {}) {
+export function formatPrice(
+  price: number | string,
+  options: Intl.NumberFormatOptions = {}
+) {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: options.currency ?? "USD",

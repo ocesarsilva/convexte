@@ -1,10 +1,9 @@
-import { PageHead } from "@/components/page-head"
-
+import * as React from "react"
+import { type Metadata } from "next"
 import { env } from "@/env"
 import { House } from "lucide-react"
 
-import { type Metadata } from "next"
-import * as React from "react"
+import { PageHead } from "@/components/page-head"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

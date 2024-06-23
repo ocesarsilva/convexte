@@ -1,6 +1,7 @@
-import { defineConfig } from "drizzle-kit"
-import { DATABASE_PREFIX } from "@/lib/constants"
 import { env } from "@/env"
+import { defineConfig } from "drizzle-kit"
+
+import { DATABASE_PREFIX } from "@/lib/constants"
 
 export default defineConfig({
   dialect: "postgresql",

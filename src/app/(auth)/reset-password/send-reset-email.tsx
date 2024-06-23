@@ -1,17 +1,18 @@
 "use client"
 
 import { useEffect } from "react"
-import { useFormState } from "react-dom"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useFormState } from "react-dom"
 import { toast } from "sonner"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { SubmitButton } from "@/components/submit-button"
+
 import { sendPasswordResetLink } from "@/lib/auth/actions"
-import { ExclamationTriangleIcon } from "@/components/icons"
 import { Paths } from "@/lib/constants"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { ExclamationTriangleIcon } from "@/components/icons"
+import { SubmitButton } from "@/components/submit-button"
 
 export function SendResetEmail() {
   const [state, formAction] = useFormState(sendPasswordResetLink, null)

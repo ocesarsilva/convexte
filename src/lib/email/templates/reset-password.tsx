@@ -8,6 +8,7 @@ import {
   Section,
   Text,
 } from "@react-email/components"
+
 import { APP_TITLE } from "@/lib/constants"
 
 export interface ResetPasswordTemplateProps {
@@ -25,18 +26,20 @@ export const ResetPasswordTemplate = ({ link }: ResetPasswordTemplateProps) => {
             <Text style={title}>{APP_TITLE}</Text>
             <Text style={text}>Olá,,</Text>
             <Text style={text}>
-              Recentemente, alguém solicitou uma alteração de senha da sua conta {APP_TITLE}. Se
-              isso fosse você, você pode definir uma nova senha aqui:
+              Recentemente, alguém solicitou uma alteração de senha da sua conta{" "}
+              {APP_TITLE}. Se isso fosse você, você pode definir uma nova senha
+              aqui:
             </Text>
             <Button style={button} href={link}>
               Redefinir senha
             </Button>
             <Text style={text}>
-              Se você não quiser alterar sua senha ou não solicitou isso, basta ignore e exclua esta
-              mensagem.
+              Se você não quiser alterar sua senha ou não solicitou isso, basta
+              ignore e exclua esta mensagem.
             </Text>
             <Text style={text}>
-              Para manter sua conta segura, não encaminhe este e-mail para ninguém.
+              Para manter sua conta segura, não encaminhe este e-mail para
+              ninguém.
             </Text>
             <Text style={text}>Tenha um bom dia!</Text>
           </Section>

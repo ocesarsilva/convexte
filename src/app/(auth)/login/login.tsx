@@ -2,13 +2,20 @@
 
 import Link from "next/link"
 import { useFormState } from "react-dom"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { PasswordInput } from "@/components/password-input"
-import { APP_TITLE } from "@/lib/constants"
+
 import { login } from "@/lib/auth/actions"
+import { APP_TITLE } from "@/lib/constants"
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { PasswordInput } from "@/components/password-input"
 import { SubmitButton } from "@/components/submit-button"
 
 export function Login() {
@@ -18,7 +25,9 @@ export function Login() {
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
         <CardTitle>Acessar conta {APP_TITLE}</CardTitle>
-        <CardDescription>Faça login em sua conta para acessar seu painel</CardDescription>
+        <CardDescription>
+          Faça login em sua conta para acessar seu painel
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form action={formAction} className="grid gap-4">

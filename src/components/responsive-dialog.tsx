@@ -1,15 +1,23 @@
 "use client"
 
-import { useState, type ReactNode, type Dispatch, type SetStateAction } from "react"
+import {
+  useState,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from "react"
+
+import { useMediaQuery } from "@/lib/hooks/use-media-query"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogDescription,
-  DialogHeader,
-  DialogTrigger,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog"
 import {
   Drawer,
@@ -21,8 +29,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import { useMediaQuery } from "@/lib/hooks/use-media-query"
-import { cn } from "@/lib/utils"
 
 type StatefulContent = ({
   open,
@@ -32,14 +38,14 @@ type StatefulContent = ({
   setOpen: Dispatch<SetStateAction<boolean>>
 }) => ReactNode | ReactNode[]
 
-export const ResponsiveDialog = (props: {
+export function ResponsiveDialog(props: {
   trigger: ReactNode
   title?: ReactNode
   description?: ReactNode
   children: ReactNode | ReactNode[] | StatefulContent
   footer?: ReactNode
   contentClassName?: string
-}) => {
+}) {
   const [open, setOpen] = useState(false)
   const isDesktop = useMediaQuery("(min-width: 640px)")
 
@@ -51,7 +57,9 @@ export const ResponsiveDialog = (props: {
           <DialogTitle>{props.title}</DialogTitle>
           <DialogDescription>{props.description}</DialogDescription>
         </DialogHeader>
-        {isFunctionType(props.children) ? props.children({ open, setOpen }) : props.children}
+        {isFunctionType(props.children)
+          ? props.children({ open, setOpen })
+          : props.children}
       </DialogContent>
       {props.footer ? <DialogFooter>{props.footer}</DialogFooter> : null}
     </Dialog>
@@ -64,7 +72,9 @@ export const ResponsiveDialog = (props: {
           <DrawerDescription>{props.description}</DrawerDescription>
         </DrawerHeader>
         <div className={cn("px-4", props.contentClassName)}>
-          {isFunctionType(props.children) ? props.children({ open, setOpen }) : props.children}
+          {isFunctionType(props.children)
+            ? props.children({ open, setOpen })
+            : props.children}
         </div>
         <DrawerFooter className="pt-2">
           {props.footer ? (
@@ -81,7 +91,7 @@ export const ResponsiveDialog = (props: {
 }
 
 const isFunctionType = (
-  prop: ReactNode | ReactNode[] | StatefulContent,
+  prop: ReactNode | ReactNode[] | StatefulContent
 ): prop is ({
   open,
   setOpen,

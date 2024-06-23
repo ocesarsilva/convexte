@@ -1,7 +1,8 @@
 import { freePlan, proPlan, subscriptionPlans } from "@/config/subscriptions"
-import type { ProtectedTRPCContext } from "../../trpc"
 import { stripe } from "@/lib/stripe"
 import { absoluteUrl, formatPrice } from "@/lib/utils"
+
+import type { ProtectedTRPCContext } from "../../trpc"
 import type { ManageSubscriptionInput } from "./stripe.input"
 
 export const getStripePlans = async (ctx: ProtectedTRPCContext) => {
@@ -62,7 +63,9 @@ export const getStripePlan = async (ctx: ProtectedTRPCContext) => {
     // Check if user has canceled subscription
     let isCanceled = false
     if (isPro && !!user.stripeSubscriptionId) {
-      const stripePlan = await stripe.subscriptions.retrieve(user.stripeSubscriptionId)
+      const stripePlan = await stripe.subscriptions.retrieve(
+        user.stripeSubscriptionId
+      )
       isCanceled = stripePlan.cancel_at_period_end
     }
 
@@ -82,7 +85,7 @@ export const getStripePlan = async (ctx: ProtectedTRPCContext) => {
 
 export const manageSubscription = async (
   ctx: ProtectedTRPCContext,
-  input: ManageSubscriptionInput,
+  input: ManageSubscriptionInput
 ) => {
   const billingUrl = absoluteUrl("/dashboard/billing")
 

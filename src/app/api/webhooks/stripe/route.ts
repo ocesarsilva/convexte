@@ -1,12 +1,11 @@
 import { headers } from "next/headers"
-
-import type Stripe from "stripe"
-
 import { env } from "@/env"
-import { stripe } from "@/lib/stripe"
 import { db } from "@/server/db"
 import { user } from "@/server/db/schema"
 import { eq } from "drizzle-orm"
+import type Stripe from "stripe"
+
+import { stripe } from "@/lib/stripe"
 
 export async function POST(req: Request) {
   const body = await req.text()
@@ -15,11 +14,18 @@ export async function POST(req: Request) {
   let event: Stripe.Event
 
   try {
-    event = stripe.webhooks.constructEvent(body, signature, env.STRIPE_WEBHOOK_SECRET)
+    event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      env.STRIPE_WEBHOOK_SECRET
+    )
   } catch (err) {
-    return new Response(`Webhook Error: ${err instanceof Error ? err.message : "Unknown error."}`, {
-      status: 400,
-    })
+    return new Response(
+      `Webhook Error: ${err instanceof Error ? err.message : "Unknown error."}`,
+      {
+        status: 400,
+      }
+    )
   }
 
   switch (event.type) {
@@ -36,7 +42,7 @@ export async function POST(req: Request) {
 
       // Retrieve the subscription details from Stripe
       const subscription = await stripe.subscriptions.retrieve(
-        checkoutSessionCompleted.subscription as string,
+        checkoutSessionCompleted.subscription as string
       )
 
       // Update the user stripe into in our database
@@ -48,7 +54,9 @@ export async function POST(req: Request) {
           stripeSubscriptionId: subscription.id,
           stripeCustomerId: subscription.customer as string,
           stripePriceId: subscription.items.data[0]?.price.id,
-          stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+          stripeCurrentPeriodEnd: new Date(
+            subscription.current_period_end * 1000
+          ),
         })
         .where(eq(user.id, userId))
 
@@ -67,7 +75,7 @@ export async function POST(req: Request) {
 
       // Retrieve the subscription details from Stripe
       const subscription = await stripe.subscriptions.retrieve(
-        invoicePaymentSucceeded.subscription as string,
+        invoicePaymentSucceeded.subscription as string
       )
 
       // Update the price id and set the new period end
@@ -75,7 +83,9 @@ export async function POST(req: Request) {
         .update(user)
         .set({
           stripePriceId: subscription.items.data[0]?.price.id,
-          stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+          stripeCurrentPeriodEnd: new Date(
+            subscription.current_period_end * 1000
+          ),
         })
         .where(eq(user.id, userId))
 

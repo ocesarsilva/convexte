@@ -1,10 +1,10 @@
 "use client"
 
 import { forwardRef } from "react"
-import { AnimatedSpinner } from "@/components/icons"
-import { Button, type ButtonProps } from "@/components/ui/button"
 
 import { cn } from "@/lib/utils"
+import { Button, type ButtonProps } from "@/components/ui/button"
+import { AnimatedSpinner } from "@/components/icons"
 
 export interface LoadingButtonProps extends ButtonProps {
   loading?: boolean
@@ -27,7 +27,7 @@ const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>(
         ) : null}
       </Button>
     )
-  },
+  }
 )
 
 LoadingButton.displayName = "LoadingButton"

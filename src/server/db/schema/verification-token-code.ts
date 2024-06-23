@@ -1,4 +1,4 @@
-import { serial, index, timestamp, varchar } from "drizzle-orm/pg-core"
+import { index, serial, timestamp, varchar } from "drizzle-orm/pg-core"
 
 import { pgTable } from "../utils"
 
@@ -9,10 +9,13 @@ export const emailVerificationCode = pgTable(
     userId: varchar("user_id", { length: 21 }).unique().notNull(),
     email: varchar("email", { length: 255 }).notNull(),
     code: varchar("code", { length: 8 }).notNull(),
-    expiresAt: timestamp("expires_at", { withTimezone: true, mode: "date" }).notNull(),
+    expiresAt: timestamp("expires_at", {
+      withTimezone: true,
+      mode: "date",
+    }).notNull(),
   },
   (t) => ({
     userIdx: index("verification_code_user_idx").on(t.userId),
     emailIdx: index("verification_code_email_idx").on(t.email),
-  }),
+  })
 )

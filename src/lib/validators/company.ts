@@ -1,4 +1,5 @@
 import { z } from "zod"
+
 import { slugify } from "../utils"
 
 export const createCompanySchema = z

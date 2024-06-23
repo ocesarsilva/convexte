@@ -12,7 +12,9 @@ export const user = pgTable(
     hashedPassword: varchar("hashed_password", { length: 255 }),
     avatar: varchar("avatar", { length: 255 }),
 
-    companyId: text("company_id").references(() => company.id, { onDelete: "cascade" }),
+    companyId: text("company_id").references(() => company.id, {
+      onDelete: "cascade",
+    }),
 
     stripeSubscriptionId: varchar("stripe_subscription_id", { length: 191 }),
     stripePriceId: varchar("stripe_price_id", { length: 191 }),
@@ -23,7 +25,7 @@ export const user = pgTable(
   },
   (t) => ({
     emailIdx: index("user_email_idx").on(t.email),
-  }),
+  })
 )
 
 export type User = typeof user.$inferSelect

@@ -1,15 +1,14 @@
 "use client"
 
-import { Icons } from "@/components/icons"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { appConfig } from "@/config/app"
-
-import { cn } from "@/lib/utils"
-
-import { Menu } from "lucide-react"
 import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"
+import { Menu } from "lucide-react"
+
+import { appConfig } from "@/config/app"
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Icons } from "@/components/icons"
 
 export function MobileNav() {
   const segment = useSelectedLayoutSegment()
@@ -34,7 +33,7 @@ export function MobileNav() {
                 href="#"
                 className={cn(
                   "flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground",
-                  { "text-foreground": active },
+                  { "text-foreground": active }
                 )}
               >
                 <Icon className="size-4" />
@@ -47,7 +46,7 @@ export function MobileNav() {
             href="#"
             className={cn(
               "flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground",
-              { "text-foreground": segment === "settings" },
+              { "text-foreground": segment === "settings" }
             )}
           >
             <Icons.settings className="size-4" />

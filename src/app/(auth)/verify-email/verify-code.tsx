@@ -1,14 +1,20 @@
 "use client"
-import { Input } from "@/components/ui/input"
-import { Label } from "@radix-ui/react-label"
+
 import { useEffect, useRef } from "react"
+import { Label } from "@radix-ui/react-label"
 import { useFormState } from "react-dom"
 import { toast } from "sonner"
+
+import {
+  logout,
+  resendVerificationEmail as resendEmail,
+  verifyEmail,
+} from "@/lib/auth/actions"
+import { Input } from "@/components/ui/input"
 import { ExclamationTriangleIcon } from "@/components/icons"
-import { logout, verifyEmail, resendVerificationEmail as resendEmail } from "@/lib/auth/actions"
 import { SubmitButton } from "@/components/submit-button"
 
-export const VerifyCode = () => {
+export function VerifyCode() {
   const [verifyEmailState, verifyEmailAction] = useFormState(verifyEmail, null)
   const [resendState, resendAction] = useFormState(resendEmail, null)
   const codeFormRef = useRef<HTMLFormElement>(null)

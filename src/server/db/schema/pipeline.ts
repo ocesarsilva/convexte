@@ -2,7 +2,6 @@ import { relations } from "drizzle-orm"
 import { text, varchar } from "drizzle-orm/pg-core"
 
 import { lifecycleDates, pgTable } from "../utils"
-
 import { company } from "./company"
 
 export const pipeline = pgTable("pipelines", {

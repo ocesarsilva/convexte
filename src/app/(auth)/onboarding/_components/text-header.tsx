@@ -18,7 +18,9 @@ export function StepHeader({ title, description }: StepHeaderProps) {
       }}
       className="w-full space-y-1.5"
     >
-      <h1 className="text-pretty text-2xl font-bold transition-colors sm:text-3xl">{title}</h1>
+      <h1 className="text-pretty text-2xl font-bold transition-colors sm:text-3xl">
+        {title}
+      </h1>
       {description ? (
         <p className="text-pretty text-sm text-muted-foreground transition-colors sm:text-base">
           Você pode atualizar o nome e o slug da sua loja mais tarde

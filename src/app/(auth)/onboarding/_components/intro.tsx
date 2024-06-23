@@ -3,9 +3,9 @@
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 
+import { APP_TITLE } from "@/lib/constants"
 import { useDebounce } from "@/lib/hooks/use-debounce"
 import { Button } from "@/components/ui/button"
-import { APP_TITLE } from "@/lib/constants"
 
 export function Intro() {
   const router = useRouter()
@@ -54,8 +54,8 @@ export function Intro() {
               },
             }}
           >
-            Comece a configurar seu negócio em apenas algumas etapas e comece a gerenciar seus
-            leads.
+            Comece a configurar seu negócio em apenas algumas etapas e comece a
+            gerenciar seus leads.
           </motion.p>
           <motion.div
             className="pt-4"
@@ -68,7 +68,9 @@ export function Intro() {
               },
             }}
           >
-            <Button onClick={() => router.push("/onboarding?step=create")}>Vamos começar</Button>
+            <Button onClick={() => router.push("/onboarding?step=create")}>
+              Vamos começar
+            </Button>
           </motion.div>
         </motion.div>
       )}

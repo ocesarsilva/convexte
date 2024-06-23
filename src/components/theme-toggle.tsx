@@ -1,7 +1,7 @@
 "use client"
 
 import { useTheme } from "next-themes"
-import { SunIcon, MoonIcon } from "@/components/icons"
+
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -9,8 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { MoonIcon, SunIcon } from "@/components/icons"
 
-export const ThemeToggle = () => {
+export function ThemeToggle() {
   const { setTheme } = useTheme()
 
   return (
@@ -23,9 +24,15 @@ export const ThemeToggle = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

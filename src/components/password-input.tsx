@@ -1,11 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { EyeOpenIcon, EyeCloseIcon } from "@/components/icons"
-import { Button } from "@/components/ui/button"
-import { Input, type InputProps } from "@/components/ui/input"
 
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Input, type InputProps } from "@/components/ui/input"
+import { EyeCloseIcon, EyeOpenIcon } from "@/components/icons"
 
 const PasswordInputComponent = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
@@ -32,11 +32,13 @@ const PasswordInputComponent = React.forwardRef<HTMLInputElement, InputProps>(
           ) : (
             <EyeOpenIcon className="h-4 w-4" aria-hidden="true" />
           )}
-          <span className="sr-only">{showPassword ? "Hide password" : "Show password"}</span>
+          <span className="sr-only">
+            {showPassword ? "Hide password" : "Show password"}
+          </span>
         </Button>
       </div>
     )
-  },
+  }
 )
 PasswordInputComponent.displayName = "PasswordInput"
 

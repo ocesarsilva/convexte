@@ -1,9 +1,14 @@
-import { type CreateCompanySchema } from "@/lib/validators/company"
-import { type ProtectedTRPCContext } from "../../trpc"
-import { generateId } from "lucia"
 import { company, user } from "@/server/db/schema"
+import { generateId } from "lucia"
 
-export const createPost = async (ctx: ProtectedTRPCContext, input: CreateCompanySchema) => {
+import { type CreateCompanySchema } from "@/lib/validators/company"
+
+import { type ProtectedTRPCContext } from "../../trpc"
+
+export const createPost = async (
+  ctx: ProtectedTRPCContext,
+  input: CreateCompanySchema
+) => {
   const companyId = generateId(15)
 
   const { name, slug } = input

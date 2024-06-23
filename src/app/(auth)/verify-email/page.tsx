@@ -1,8 +1,16 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { redirect } from "next/navigation"
+
 import { validateRequest } from "@/lib/auth/validate-request"
-import { VerifyCode } from "./verify-code"
 import { Paths } from "@/lib/constants"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+import { VerifyCode } from "./verify-code"
 
 export const metadata = {
   title: "Verify Email",
@@ -20,8 +28,8 @@ export default async function VerifyEmailPage() {
       <CardHeader>
         <CardTitle>Verificar e-mail</CardTitle>
         <CardDescription>
-          O código de verificação foi enviado para <strong>{user.email}</strong>. Verifique sua
-          pasta de spam se você não consigo encontrar o e-mail.
+          O código de verificação foi enviado para <strong>{user.email}</strong>
+          . Verifique sua pasta de spam se você não consigo encontrar o e-mail.
         </CardDescription>
       </CardHeader>
       <CardContent>

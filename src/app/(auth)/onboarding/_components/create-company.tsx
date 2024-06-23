@@ -2,11 +2,18 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
+import { api } from "@/trpc/react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
+import { Paths } from "@/lib/constants"
+import { slugify } from "@/lib/utils"
+import {
+  createCompanySchema,
+  type CreateCompanySchema,
+} from "@/lib/validators/company"
 import {
   Form,
   FormControl,
@@ -17,11 +24,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { LoadingButton } from "@/components/loading-button"
-import { type CreateCompanySchema, createCompanySchema } from "@/lib/validators/company"
-import { api } from "@/trpc/react"
+
 import { StepHeader } from "./text-header"
-import { Paths } from "@/lib/constants"
-import { slugify } from "@/lib/utils"
 
 export function CreateCompany() {
   const router = useRouter()
@@ -50,9 +54,11 @@ export function CreateCompany() {
             toast.success("Empresa criada com sucesso!")
           },
           onError: (error) => {
-            toast.error(error.message ?? "Acorreu um erro ao criar sua empresa.")
+            toast.error(
+              error.message ?? "Acorreu um erro ao criar sua empresa."
+            )
           },
-        },
+        }
       )
     })
   })
@@ -64,7 +70,10 @@ export function CreateCompany() {
   }, [nameState])
 
   return (
-    <motion.div exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.3, type: "spring" }}>
+    <motion.div
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3, type: "spring" }}
+    >
       <motion.div
         variants={{
           show: {
@@ -92,7 +101,11 @@ export function CreateCompany() {
           }}
         >
           <Form {...form}>
-            <form className={"grid w-full gap-4"} onSubmit={onSubmit} autoComplete="off">
+            <form
+              className={"grid w-full gap-4"}
+              onSubmit={onSubmit}
+              autoComplete="off"
+            >
               <FormField
                 control={form.control}
                 name="name"
@@ -100,7 +113,11 @@ export function CreateCompany() {
                   <FormItem>
                     <FormLabel>Nome</FormLabel>
                     <FormControl>
-                      <Input placeholder="Digite o nome da empresa aqui." autoFocus {...field} />
+                      <Input
+                        placeholder="Digite o nome da empresa aqui."
+                        autoFocus
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -113,13 +130,21 @@ export function CreateCompany() {
                   <FormItem>
                     <FormLabel>Slug</FormLabel>
                     <FormControl>
-                      <Input readOnly disabled placeholder="Slug do sua empresa." {...field} />
+                      <Input
+                        readOnly
+                        disabled
+                        placeholder="Slug do sua empresa."
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <LoadingButton loading={isCreatePending} disabled={isCreatePending}>
+              <LoadingButton
+                loading={isCreatePending}
+                disabled={isCreatePending}
+              >
                 Salvar
               </LoadingButton>
             </form>
