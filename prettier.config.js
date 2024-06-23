@@ -30,7 +30,10 @@ const config = {
   importOrderCombineTypeAndValueImports: true,
   tailwindAttributes: ["tw"],
   tailwindFunctions: ["cva"],
-  plugins: ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
+  plugins: [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss",
+  ],
 }
 
 export default config

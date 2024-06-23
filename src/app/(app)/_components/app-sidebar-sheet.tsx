@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useSidebar } from "@/contexts/sidebar-provider"
 import { api } from "@/trpc/react"
 import { Menu, PenSquare, Search } from "lucide-react"
@@ -8,7 +9,7 @@ import { Menu, PenSquare, Search } from "lucide-react"
 import { appConfig } from "@/config/app"
 import { useMediaQuery } from "@/lib/hooks/use-media-query"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Sheet,
   SheetClose,
@@ -21,6 +22,7 @@ import { Icons } from "@/components/icons"
 export function AppSidebarSheet() {
   const { open, setOpen } = useSidebar()
   const { data: company } = api.company.get.useQuery()
+  const pathname = usePathname()
 
   const isDesktop = useMediaQuery("(min-width: 1024px)")
   if (isDesktop) return null
@@ -79,7 +81,11 @@ export function AppSidebarSheet() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "flex h-8 w-full items-center justify-start gap-2 rounded p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                    buttonVariants({ variant: "ghost" }),
+                    pathname === item.href
+                      ? "bg-muted hover:bg-muted"
+                      : "hover:bg-muted/50",
+                    "w-full justify-start gap-2"
                   )}
                 >
                   <Icon className="size-4" />

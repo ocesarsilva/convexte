@@ -34,8 +34,10 @@ export function AppSidebar({ children }: AppSidebarProps) {
                 <Link
                   href={item.href}
                   className={cn(
-                    "flex h-8 w-full items-center justify-center rounded text-muted-foreground transition-colors hover:bg-accent hover:text-foreground",
-                    { "bg-accent/50 text-accent-foreground": active }
+                    "flex h-8 w-full items-center justify-center rounded transition-colors hover:bg-muted/50",
+                    {
+                      "bg-muted hover:bg-muted": active,
+                    }
                   )}
                 >
                   <Icon className="size-4" />
@@ -53,10 +55,7 @@ export function AppSidebar({ children }: AppSidebarProps) {
             <Link
               href="#"
               className={cn(
-                "flex h-8 w-full items-center justify-center rounded text-muted-foreground transition-colors hover:bg-accent hover:text-foreground",
-                {
-                  "bg-accent/50 text-accent-foreground": segment === "settings",
-                }
+                "flex h-8 w-full items-center justify-center rounded transition-colors hover:bg-muted"
               )}
             >
               <Icons.logout className="size-4" />

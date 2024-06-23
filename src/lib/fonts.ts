@@ -1,8 +1,6 @@
-import "@/styles/globals.css"
+import { GeistMono } from "geist/font/mono"
+import { GeistSans } from "geist/font/sans"
 
-import { Inter as FontSans } from "next/font/google"
+export const fontSans = GeistSans
 
-export const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
+export const fontMono = GeistMono
