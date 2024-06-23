@@ -45,10 +45,10 @@ export function Login() {
 
           <div className="flex flex-wrap justify-between">
             <Button variant={"link"} size={"sm"} className="p-0" asChild>
-              <Link href={"/signup"}>Not signed up? Sign up now.</Link>
+              <Link href={"/signup"}>Não se inscreveu? Inscreva-se agora.</Link>
             </Button>
             <Button variant={"link"} size={"sm"} className="p-0" asChild>
-              <Link href={"/reset-password"}>Forgot password?</Link>
+              <Link href={"/reset-password"}>Esqueceu sua senha?</Link>
             </Button>
           </div>
 

@@ -9,7 +9,6 @@ export const company = pgTable("companies", {
   id: varchar("id", { length: 21 }).primaryKey(),
   name: text("name").notNull(),
   slug: text("slug").unique().notNull(),
-  domain: text("domain").unique(),
   image: text("image"),
 
   ...lifecycleDates,

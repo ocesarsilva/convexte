@@ -1,29 +1,22 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import * as React from "react"
+import { type Metadata } from "next"
 import { redirect } from "next/navigation"
+
 import { validateRequest } from "@/lib/auth/validate-request"
+import { Paths } from "@/lib/constants"
+import { Onboarding } from "./_components/onboarding"
 
-import { APP_TITLE, Paths } from "@/lib/constants"
-
-export const metadata = {
+export const metadata: Metadata = {
   title: "Onboarding",
-  description: "Verify Email Page",
+  description: "Comece configurado sua empresa",
 }
 
-export default async function VerifyEmailPage() {
+export default async function OnboardingPage() {
   const { user } = await validateRequest()
 
-  if (!user) redirect(Paths.Login)
-  if (user.emailVerified) redirect(Paths.Dashboard)
+  if (!user) {
+    redirect(Paths.Login)
+  }
 
-  return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle>Welcome to {APP_TITLE}</CardTitle>
-        <CardDescription>Let's start by setting up your business</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Work in progress...</p>
-      </CardContent>
-    </Card>
-  )
+  return <Onboarding />
 }
