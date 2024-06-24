@@ -1,7 +1,8 @@
-import { boolean, index, text, timestamp, varchar } from "drizzle-orm/pg-core"
+import { relations } from "drizzle-orm"
+import { boolean, index, timestamp, varchar } from "drizzle-orm/pg-core"
 
 import { lifecycleDates, pgTable } from "../utils"
-import { company } from "./company"
+import { organization } from "./organization"
 
 export const user = pgTable(
   "users",
@@ -11,10 +12,6 @@ export const user = pgTable(
     emailVerified: boolean("email_verified").default(false).notNull(),
     hashedPassword: varchar("hashed_password", { length: 255 }),
     avatar: varchar("avatar", { length: 255 }),
-
-    companyId: text("company_id").references(() => company.id, {
-      onDelete: "cascade",
-    }),
 
     stripeSubscriptionId: varchar("stripe_subscription_id", { length: 191 }),
     stripePriceId: varchar("stripe_price_id", { length: 191 }),
@@ -27,6 +24,10 @@ export const user = pgTable(
     emailIdx: index("user_email_idx").on(t.email),
   })
 )
+
+export const userRelations = relations(user, ({ many }) => ({
+  companies: many(organization),
+}))
 
 export type User = typeof user.$inferSelect
 export type NewUser = typeof user.$inferInsert
