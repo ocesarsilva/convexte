@@ -69,6 +69,7 @@ export function OrganizationSwitcher({
         <PopoverTrigger asChild>
           <Button
             role="combobox"
+            variant={isSheet ? "outline" : "default"}
             size={isSheet ? undefined : "icon"}
             aria-expanded={open}
             aria-label="Select a org"

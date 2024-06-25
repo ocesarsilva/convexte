@@ -69,7 +69,7 @@ export function CreateCompany({ userId }: { userId: string }) {
         }}
         initial="hidden"
         animate="show"
-        className="flex flex-col space-y-4 rounded-xl bg-background/60 p-8"
+        className="flex flex-col space-y-4 rounded-xl bg-background/60 p-8 text-center"
       >
         <StepHeader
           title="Vamos começar criando sua organização"
@@ -85,7 +85,11 @@ export function CreateCompany({ userId }: { userId: string }) {
             },
           }}
         >
-          <CreateOrganizationForm form={form} onSubmit={onSubmit}>
+          <CreateOrganizationForm
+            form={form}
+            onSubmit={onSubmit}
+            className="text-start"
+          >
             <LoadingButton loading={isCreatePending} disabled={isCreatePending}>
               Salvar
             </LoadingButton>

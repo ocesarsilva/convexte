@@ -34,8 +34,8 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontMono.className,
-          fontSans.className
+          fontMono.variable,
+          fontSans.variable
         )}
       >
         <ThemeProvider

@@ -14,6 +14,14 @@ export async function createOrganization(
 ) {
   noStore()
   try {
+    const orgWithSameSlug = await db.query.organization.findFirst({
+      where: (table, { eq }) => eq(table.slug, slugify(input.name)),
+    })
+
+    if (orgWithSameSlug) {
+      throw new Error("Esse slug já está sendo usado.")
+    }
+
     const id = generateId(21)
 
     const newStore = await db
