@@ -39,4 +39,22 @@ export const appConfig = {
       segment: "settings",
     },
   ] satisfies NavItem[],
+  sidebarNavItems: [
+    {
+      title: "Geral",
+      href: "/settings",
+    },
+    {
+      title: "Aparência",
+      href: "/settings/appearance",
+    },
+    {
+      title: "Notificações",
+      href: "/settings/notifications",
+    },
+    {
+      title: "Avançado",
+      href: "/settings/display",
+    },
+  ],
 }

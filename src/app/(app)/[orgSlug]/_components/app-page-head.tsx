@@ -63,7 +63,7 @@ export async function AppPageHead({
           </AppSidebarSheet>
           <div className="flex flex-row items-center gap-2">
             {icon}
-            <span className="text-sm">{title}</span>
+            <h2 className="text-md font-semibold tracking-tight">{title}</h2>
           </div>
         </div>
 
