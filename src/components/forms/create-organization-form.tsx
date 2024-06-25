@@ -3,7 +3,7 @@
 import * as React from "react"
 import { type UseFormReturn } from "react-hook-form"
 
-import { cn } from "@/lib/utils"
+import { cn, slugify } from "@/lib/utils"
 import { type CreateOrganizationSchema } from "@/lib/validators/organization"
 import {
   Form,
@@ -29,6 +29,12 @@ export function CreateOrganizationForm({
   className,
   ...props
 }: CreateOrganizationFormProps) {
+  const nameState = form.watch("name")
+
+  React.useEffect(() => {
+    form.setValue("slug", slugify(nameState))
+  }, [nameState])
+
   return (
     <Form {...form}>
       <form

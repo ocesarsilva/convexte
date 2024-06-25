@@ -25,7 +25,7 @@ export function AppSidebarSheet({ children }: AppSidebarSheetProps) {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="flex flex-col gap-6 text-sm">
+      <SheetContent side="left" className="flex flex-col gap-6 pt-10 text-sm">
         {children}
       </SheetContent>
     </Sheet>

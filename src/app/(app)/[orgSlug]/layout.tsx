@@ -5,9 +5,9 @@ import { validateRequest } from "@/lib/auth/validate-request"
 import { Paths } from "@/lib/constants"
 import { getOrganizationsByUserId } from "@/lib/queries/organization"
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { OrganizationSwitcher } from "@/components/organization-switcher"
 
 import { AppSidebar } from "./_components/app-sidebar"
-import { AppSidebarHead } from "./_components/app-sidebar-head"
 import { AppSidebarQuickAction } from "./_components/app-sidebar-quick-action"
 
 interface AppLayoutProps {
@@ -30,7 +30,10 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
       <TooltipProvider>
         <div className="flex min-h-screen w-full flex-col">
           <AppSidebar orgSlug={orgSlug}>
-            <AppSidebarHead organizationsPromise={organizationsPromise} />
+            <OrganizationSwitcher
+              organizationsPromise={organizationsPromise}
+              userId={user.id}
+            />
             <AppSidebarQuickAction />
           </AppSidebar>
           <div className="flex flex-col sm:pl-20">
