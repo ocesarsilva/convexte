@@ -1,9 +1,11 @@
 {
+  "id": "a60205cb-80c2-4079-8734-3c46c20706b3",
+  "prevId": "9c71516b-ae96-46cd-a2a2-030f8b0a9cc8",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.acme_users": {
-      "name": "acme_users",
+    "public.convexte_users": {
+      "name": "convexte_users",
       "schema": "",
       "columns": {
         "id": {
@@ -34,12 +36,6 @@
         "avatar": {
           "name": "avatar",
           "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "company_id": {
-          "name": "company_id",
-          "type": "text",
           "primaryKey": false,
           "notNull": false
         },
@@ -83,6 +79,7 @@
       },
       "indexes": {
         "user_email_idx": {
+          "name": "user_email_idx",
           "columns": [
             {
               "expression": "email",
@@ -91,41 +88,26 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "user_email_idx",
           "isUnique": false,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
-      "foreignKeys": {
-        "acme_users_company_id_acme_companies_id_fk": {
-          "name": "acme_users_company_id_acme_companies_id_fk",
-          "tableFrom": "acme_users",
-          "columnsFrom": [
-            "company_id"
-          ],
-          "tableTo": "acme_companies",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "acme_users_email_unique": {
-          "name": "acme_users_email_unique",
+        "convexte_users_email_unique": {
+          "name": "convexte_users_email_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "email"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       }
     },
-    "public.acme_sessions": {
-      "name": "acme_sessions",
+    "public.convexte_sessions": {
+      "name": "convexte_sessions",
       "schema": "",
       "columns": {
         "id": {
@@ -149,6 +131,7 @@
       },
       "indexes": {
         "session_user_idx": {
+          "name": "session_user_idx",
           "columns": [
             {
               "expression": "user_id",
@@ -157,19 +140,18 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "session_user_idx",
           "isUnique": false,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.acme_password_reset_tokens": {
-      "name": "acme_password_reset_tokens",
+    "public.convexte_password_reset_tokens": {
+      "name": "convexte_password_reset_tokens",
       "schema": "",
       "columns": {
         "id": {
@@ -193,6 +175,7 @@
       },
       "indexes": {
         "password_token_user_idx": {
+          "name": "password_token_user_idx",
           "columns": [
             {
               "expression": "user_id",
@@ -201,19 +184,18 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "password_token_user_idx",
           "isUnique": false,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.acme_email_verification_codes": {
-      "name": "acme_email_verification_codes",
+    "public.convexte_email_verification_codes": {
+      "name": "convexte_email_verification_codes",
       "schema": "",
       "columns": {
         "id": {
@@ -249,6 +231,7 @@
       },
       "indexes": {
         "verification_code_user_idx": {
+          "name": "verification_code_user_idx",
           "columns": [
             {
               "expression": "user_id",
@@ -257,13 +240,13 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "verification_code_user_idx",
           "isUnique": false,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         },
         "verification_code_email_idx": {
+          "name": "verification_code_email_idx",
           "columns": [
             {
               "expression": "email",
@@ -272,27 +255,26 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "verification_code_email_idx",
           "isUnique": false,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "acme_email_verification_codes_user_id_unique": {
-          "name": "acme_email_verification_codes_user_id_unique",
+        "convexte_email_verification_codes_user_id_unique": {
+          "name": "convexte_email_verification_codes_user_id_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "user_id"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       }
     },
-    "public.acme_companies": {
-      "name": "acme_companies",
+    "public.convexte_companies": {
+      "name": "convexte_companies",
       "schema": "",
       "columns": {
         "id": {
@@ -313,14 +295,14 @@
           "primaryKey": false,
           "notNull": true
         },
-        "domain": {
-          "name": "domain",
+        "image": {
+          "name": "image",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "image": {
-          "name": "image",
+        "owner_id": {
+          "name": "owner_id",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -340,27 +322,34 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
+      "foreignKeys": {
+        "convexte_companies_owner_id_convexte_users_id_fk": {
+          "name": "convexte_companies_owner_id_convexte_users_id_fk",
+          "tableFrom": "convexte_companies",
+          "tableTo": "convexte_users",
+          "columnsFrom": [
+            "owner_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "acme_companies_slug_unique": {
-          "name": "acme_companies_slug_unique",
+        "convexte_companies_slug_unique": {
+          "name": "convexte_companies_slug_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "slug"
-          ],
-          "nullsNotDistinct": false
-        },
-        "acme_companies_domain_unique": {
-          "name": "acme_companies_domain_unique",
-          "columns": [
-            "domain"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       }
     },
-    "public.acme_pipelines": {
-      "name": "acme_pipelines",
+    "public.convexte_pipelines": {
+      "name": "convexte_pipelines",
       "schema": "",
       "columns": {
         "id": {
@@ -409,28 +398,28 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "acme_pipelines_company_id_acme_companies_id_fk": {
-          "name": "acme_pipelines_company_id_acme_companies_id_fk",
-          "tableFrom": "acme_pipelines",
+        "convexte_pipelines_company_id_convexte_companies_id_fk": {
+          "name": "convexte_pipelines_company_id_convexte_companies_id_fk",
+          "tableFrom": "convexte_pipelines",
+          "tableTo": "convexte_companies",
           "columnsFrom": [
             "company_id"
           ],
-          "tableTo": "acme_companies",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "acme_pipelines_slug_unique": {
-          "name": "acme_pipelines_slug_unique",
+        "convexte_pipelines_slug_unique": {
+          "name": "convexte_pipelines_slug_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "slug"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       }
     }
@@ -438,10 +427,8 @@
   "enums": {},
   "schemas": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
-  },
-  "id": "922851be-ed74-4384-90f6-98667c980334",
-  "prevId": "7b023a33-977d-4bae-bbb8-fa1b37ce3811"
+    "tables": {}
+  }
 }

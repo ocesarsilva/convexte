@@ -9,7 +9,7 @@ import { Onboarding } from "./_components/onboarding"
 
 export const metadata: Metadata = {
   title: "Onboarding",
-  description: "Comece configurado sua empresa",
+  description: "Comece configurado sua organização",
 }
 
 export default async function OnboardingPage() {
@@ -19,5 +19,5 @@ export default async function OnboardingPage() {
     redirect(Paths.Login)
   }
 
-  return <Onboarding />
+  return <Onboarding userId={user.id} />
 }

@@ -5,7 +5,6 @@ import { Loader2 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button, type ButtonProps } from "@/components/ui/button"
-import { AnimatedSpinner } from "@/components/icons"
 
 export interface LoadingButtonProps extends ButtonProps {
   loading?: boolean

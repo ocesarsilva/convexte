@@ -23,7 +23,7 @@ export function StepHeader({ title, description }: StepHeaderProps) {
       </h1>
       {description ? (
         <p className="text-pretty text-sm text-muted-foreground transition-colors sm:text-base">
-          Você pode atualizar o nome e o slug da sua loja mais tarde
+          Você pode atualizar o nome e o slug da sua organização
         </p>
       ) : null}
     </motion.div>

@@ -1,7 +1,6 @@
 import "@/styles/globals.css"
 
 import type { Metadata, Viewport } from "next"
-import { TRPCReactProvider } from "@/trpc/react"
 
 import { APP_TITLE } from "@/lib/constants"
 import { fontMono, fontSans } from "@/lib/fonts"
@@ -45,7 +44,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+          {children}
           <Toaster />
         </ThemeProvider>
       </body>
