@@ -33,7 +33,7 @@ export function AppSidebar({ children, orgSlug }: AppSidebarProps) {
             <Tooltip key={item.title}>
               <TooltipTrigger asChild>
                 <Link
-                  href={`${orgSlug}${item.href}`}
+                  href={`/${orgSlug}${item.href}`}
                   className={cn(
                     "flex h-8 w-full items-center justify-center rounded transition-colors hover:bg-muted/50",
                     {
