@@ -2,7 +2,7 @@ import { z } from "zod"
 
 import { slugify } from "../utils"
 
-export const createCompanySchema = z
+export const createOrganizationSchema = z
   .object({
     name: z.string().min(3).max(50),
     slug: z.string(),
@@ -14,9 +14,9 @@ export const createCompanySchema = z
     return true
   })
 
-export const updateCompanySchema = z.object({
+export const updateOrganizationSchema = z.object({
   name: z.string().min(3).max(50),
 })
 
-export type CreateCompanySchema = z.infer<typeof createCompanySchema>
-export type UpdateCompanySchema = z.infer<typeof updateCompanySchema>
+export type CreateOrganizationSchema = z.infer<typeof createOrganizationSchema>
+export type UpdateOrganizationSchema = z.infer<typeof updateOrganizationSchema>

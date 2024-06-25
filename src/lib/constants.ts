@@ -7,5 +7,7 @@ export enum Paths {
   Login = "/login",
   Signup = "/signup",
   VerifyEmail = "/verify-email",
+  Onboarding = "/onboarding",
   ResetPassword = "/reset-password",
 }
+export const unknownError = "An unknown error occurred. Please try again later."

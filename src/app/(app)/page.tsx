@@ -1,19 +1,19 @@
-import * as React from "react"
-import { type Metadata } from "next"
-import { env } from "@/env"
-import { House } from "lucide-react"
+import { redirect } from "next/navigation"
 
-import { PageHead } from "@/components/page-head"
+import { validateRequest } from "@/lib/auth/validate-request"
+import { Paths } from "@/lib/constants"
+import { getOrganizationsByUserId } from "@/lib/queries/organization"
 
-export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: "Home",
-}
+export default async function AppIndex() {
+  const { user } = await validateRequest()
 
-export default async function DashboardPage() {
-  return (
-    <div className="flex-1">
-      <PageHead title="Home" icon={<House className="size-4" />} />
-    </div>
-  )
+  if (!user) {
+    redirect(Paths.Login)
+  }
+
+  const organizations = await getOrganizationsByUserId({ userId: user.id })
+
+  if (organizations.length > 0) redirect(`/${organizations[0]?.slug}`)
+
+  return redirect(Paths.Onboarding)
 }

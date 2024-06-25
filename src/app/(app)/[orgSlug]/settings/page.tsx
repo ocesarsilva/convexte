@@ -12,15 +12,9 @@ export const metadata: Metadata = {
 }
 
 export default async function BillingPage() {
-  const company = await api.company.get.query()
-
-  if (!company) {
-    notFound()
-  }
-
   return (
     <div className="flex-1">
-      <CompanyDetailsForm company={company} />
+      {/* <CompanyDetailsForm company={company} /> */}
     </div>
   )
 }

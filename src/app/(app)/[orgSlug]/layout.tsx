@@ -1,0 +1,43 @@
+import { redirect } from "next/navigation"
+import { SidebarProvider } from "@/contexts/sidebar-provider"
+
+import { validateRequest } from "@/lib/auth/validate-request"
+import { Paths } from "@/lib/constants"
+import { getOrganizationsByUserId } from "@/lib/queries/organization"
+import { TooltipProvider } from "@/components/ui/tooltip"
+
+import { AppSidebar } from "./_components/app-sidebar"
+import { AppSidebarHead } from "./_components/app-sidebar-head"
+import { AppSidebarQuickAction } from "./_components/app-sidebar-quick-action"
+
+interface AppLayoutProps {
+  params: {
+    orgSlug: string
+  }
+  children: React.ReactNode
+}
+
+export default async function AppLayout({ children, params }: AppLayoutProps) {
+  const orgSlug = decodeURIComponent(params.orgSlug)
+  const { user } = await validateRequest()
+
+  if (!user) redirect(Paths.Login)
+
+  const organizationsPromise = getOrganizationsByUserId({ userId: user.id })
+
+  return (
+    <SidebarProvider>
+      <TooltipProvider>
+        <div className="flex min-h-screen w-full flex-col">
+          <AppSidebar orgSlug={orgSlug}>
+            <AppSidebarHead organizationsPromise={organizationsPromise} />
+            <AppSidebarQuickAction />
+          </AppSidebar>
+          <div className="flex flex-col sm:pl-20">
+            <div className="min-h-screen flex-1">{children}</div>
+          </div>
+        </div>
+      </TooltipProvider>
+    </SidebarProvider>
+  )
+}

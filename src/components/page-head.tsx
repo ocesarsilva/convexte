@@ -1,4 +1,4 @@
-import { AppSidebarSheet } from "@/app/(app)/_components/app-sidebar-sheet"
+import { AppSidebarSheet } from "@/app/(app)/[orgSlug]/_components/app-sidebar-sheet"
 
 interface PageHeadProps {
   title: string

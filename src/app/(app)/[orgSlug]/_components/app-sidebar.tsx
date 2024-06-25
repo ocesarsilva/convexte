@@ -13,11 +13,12 @@ import {
 } from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
 
-interface AppSidebarProps {
+interface AppSidebarProps extends React.HTMLAttributes<HTMLElement> {
+  orgSlug: string
   children: React.ReactNode
 }
 
-export function AppSidebar({ children }: AppSidebarProps) {
+export function AppSidebar({ children, orgSlug }: AppSidebarProps) {
   const segment = useSelectedLayoutSegment()
 
   return (
@@ -32,7 +33,7 @@ export function AppSidebar({ children }: AppSidebarProps) {
             <Tooltip key={item.title}>
               <TooltipTrigger asChild>
                 <Link
-                  href={item.href}
+                  href={`${orgSlug}${item.href}`}
                   className={cn(
                     "flex h-8 w-full items-center justify-center rounded transition-colors hover:bg-muted/50",
                     {
