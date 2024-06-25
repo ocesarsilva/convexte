@@ -1,5 +1,6 @@
 import { PenSquare, Search } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 export function AppSidebarQuickAction({
@@ -7,39 +8,19 @@ export function AppSidebarQuickAction({
 }: {
   isSheet?: boolean
 }) {
-  if (isSheet) {
-    return (
-      <div className="flex flex-row space-y-1 px-2">
-        <Button
-          variant="outline"
-          className="size-9 flex-1 justify-start shadow-sm"
-        >
-          <PenSquare className="size-4" />
-          <span>Novo Lead</span>
-        </Button>
-
-        <Button
-          variant="outline"
-          size="icon"
-          className="size-9 rounded shadow-sm"
-        >
-          <Search className="size-4" />
-        </Button>
-      </div>
-    )
-  }
-
   return (
-    <div className="flex w-full flex-col items-center space-y-1 pt-4">
-      <button className="flex size-9 items-center justify-center rounded transition-colors hover:bg-accent">
-        <PenSquare className="size-4" />
-        <span className="sr-only">Adicionar novo lead</span>
-      </button>
-
-      <button className="flex size-9 items-center justify-center rounded transition-colors hover:bg-accent">
+    <div className="flex w-full items-center justify-center gap-2 py-2 sm:flex-col">
+      <Button
+        size={isSheet ? "default" : "icon"}
+        variant="outline"
+        className={cn({ "flex-1 justify-start": isSheet })}
+      >
+        <PenSquare className="mr-2 size-4 sm:m-0" />
+        <span className="sm:hidden">Novo Lead</span>
+      </Button>
+      <Button size="icon" variant="outline">
         <Search className="size-4" />
-        <span className="sr-only">Procurar</span>
-      </button>
+      </Button>
     </div>
   )
 }

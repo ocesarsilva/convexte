@@ -31,7 +31,7 @@ export function SettingsSidebar({
         {items.map((item) => (
           <Link
             key={item.href}
-            href={item.href}
+            href={`/${orgSlug}${item.href}`}
             className={cn(
               buttonVariants({ variant: "ghost" }),
               pathname === `/${orgSlug}${item.href}`

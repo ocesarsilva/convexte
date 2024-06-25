@@ -62,7 +62,7 @@ export const appConfig = {
     },
     {
       title: "Avançado",
-      href: "/settings/display",
+      href: "/settings/advanced",
     },
   ],
 }

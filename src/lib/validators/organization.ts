@@ -18,5 +18,10 @@ export const updateOrganizationSchema = z.object({
   name: z.string().min(3).max(50),
 })
 
+export const deleteOrganizationSchema = z.object({
+  orgSlug: z.string(),
+})
+
+export type DeleteOrganizationSchema = z.infer<typeof deleteOrganizationSchema>
 export type CreateOrganizationSchema = z.infer<typeof createOrganizationSchema>
 export type UpdateOrganizationSchema = z.infer<typeof updateOrganizationSchema>

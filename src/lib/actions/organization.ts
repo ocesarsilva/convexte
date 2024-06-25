@@ -1,14 +1,17 @@
 "use server"
 
 import { unstable_noStore as noStore, revalidateTag } from "next/cache"
+import { redirect } from "next/navigation"
 import { db } from "@/server/db"
 import { organization } from "@/server/db/schema"
 import { eq } from "drizzle-orm"
 import { generateId } from "lucia"
 
+import { validateRequest } from "../auth/validate-request"
 import { getErrorMessage } from "../handle-error"
 import { slugify } from "../utils"
 import {
+  deleteOrganizationSchema,
   type CreateOrganizationSchema,
   type UpdateOrganizationSchema,
 } from "../validators/organization"
@@ -85,6 +88,8 @@ export async function updateOrganization(
       throw new Error("Ocorreu um erro ao atualizar sua organização.")
     }
 
+    revalidateTag(`organizations-${data.ownerId}`)
+
     return {
       data: data,
       error: null,
@@ -95,4 +100,20 @@ export async function updateOrganization(
       error: getErrorMessage(err),
     }
   }
+}
+
+export async function deleteOrganization(fd: FormData) {
+  const { orgSlug } = deleteOrganizationSchema.parse(Object.fromEntries(fd))
+
+  const { user } = await validateRequest()
+
+  if (!user) {
+    throw new Error("Unauthorized")
+  }
+
+  await db.delete(organization).where(eq(organization.slug, orgSlug))
+
+  revalidateTag(`organizations-${user.id}`)
+
+  redirect(`/`)
 }

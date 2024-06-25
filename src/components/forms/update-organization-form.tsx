@@ -3,7 +3,7 @@
 import * as React from "react"
 import { type UseFormReturn } from "react-hook-form"
 
-import { cn } from "@/lib/utils"
+import { cn, slugify } from "@/lib/utils"
 import { type UpdateOrganizationSchema } from "@/lib/validators/organization"
 import {
   Form,
@@ -62,7 +62,7 @@ export function UpdateOrganizationForm({
               readOnly
               disabled
               placeholder="Slug do sua organização"
-              value={form.watch("name")}
+              value={slugify(form.watch("name"))}
             />
           </FormControl>
           <FormMessage />

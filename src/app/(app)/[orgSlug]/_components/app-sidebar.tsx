@@ -6,6 +6,7 @@ import { useSelectedLayoutSegment } from "next/navigation"
 
 import { appConfig } from "@/config/app"
 import { cn } from "@/lib/utils"
+import { Separator } from "@/components/ui/separator"
 import {
   Tooltip,
   TooltipContent,
@@ -25,6 +26,8 @@ export function AppSidebar({ children, orgSlug }: AppSidebarProps) {
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-20 flex-col border-r border-border/50 bg-background py-5 sm:flex">
       <nav className="flex flex-col items-center space-y-1.5 px-2">
         {children}
+
+        <Separator className="my-4" />
         {appConfig.navItems.map((item) => {
           const Icon = Icons[item.icon]
           const active = segment === item.segment
