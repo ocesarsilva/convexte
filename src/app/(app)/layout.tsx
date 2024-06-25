@@ -1,9 +1,9 @@
-import { Providers } from "@/contexts/providers"
+import { AppProviders } from "@/contexts/app-providers"
 
 interface AppLayoutProps {
   children: React.ReactNode
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
-  return <Providers>{children}</Providers>
+  return <AppProviders>{children}</AppProviders>
 }

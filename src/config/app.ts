@@ -39,10 +39,14 @@ export const appConfig = {
       segment: "settings",
     },
   ] satisfies NavItem[],
-  sidebarNavItems: [
+  settingsNavItems: [
     {
       title: "Geral",
       href: "/settings",
+    },
+    {
+      title: "Membros",
+      href: "/members",
     },
     {
       title: "Aparência",
@@ -51,6 +55,10 @@ export const appConfig = {
     {
       title: "Notificações",
       href: "/settings/notifications",
+    },
+    {
+      title: "API Tokens",
+      href: "/settings/api-tokens",
     },
     {
       title: "Avançado",

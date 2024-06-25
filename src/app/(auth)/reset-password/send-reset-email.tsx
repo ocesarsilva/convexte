@@ -11,8 +11,8 @@ import { Paths } from "@/lib/constants"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { SubmitButton } from "@/components/ui/submit-button"
 import { ExclamationTriangleIcon } from "@/components/icons"
-import { SubmitButton } from "@/components/submit-button"
 
 export function SendResetEmail() {
   const [state, formAction] = useFormState(sendPasswordResetLink, null)

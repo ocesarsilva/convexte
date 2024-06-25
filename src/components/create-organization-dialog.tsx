@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/drawer"
 
 import { CreateOrganizationForm } from "./forms/create-organization-form"
-import { LoadingButton } from "./loading-button"
+import { LoadingButton } from "./ui/loading-button"
 
 interface CreateOrganizationDialogProps
   extends React.ComponentPropsWithoutRef<typeof Dialog> {

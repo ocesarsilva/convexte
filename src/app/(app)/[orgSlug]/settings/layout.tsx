@@ -1,9 +1,8 @@
 import { appConfig } from "@/config/app"
-import { Icons } from "@/components/icons"
+import { PageHeader } from "@/components/layout/page-header"
 
-import { AppPageHead } from "../_components/app-page-head"
 import { SettingsSidebar } from "./_components/settings-sidebar"
-import { SettingsSidebarNav } from "./_components/settings-sidebar-nav"
+import { SettingsTabsbar } from "./_components/settings-tabsbar"
 
 interface SettingsLayoutProps {
   children: React.ReactNode
@@ -18,21 +17,15 @@ export default function SettingsLayout({
 }: SettingsLayoutProps) {
   const orgSlug = decodeURIComponent(params.orgSlug)
 
+  const { settingsNavItems } = appConfig
+
   return (
     <>
-      <AppPageHead
-        orgSlug={orgSlug}
-        title="Configurações"
-        icon={<Icons.settings className="size-4" />}
-      />
-      <div className="p-10 pb-16 pt-3 lg:pt-10">
+      <PageHeader title="Configurações" icon="settings" />
+      <SettingsTabsbar orgSlug={orgSlug} items={settingsNavItems} />
+      <div className="px-5 pb-16 pt-3 lg:px-10 lg:pt-10">
         <div className="flex w-full flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
-          <SettingsSidebar>
-            <SettingsSidebarNav
-              orgSlug={orgSlug}
-              items={appConfig.sidebarNavItems}
-            />
-          </SettingsSidebar>
+          <SettingsSidebar orgSlug={orgSlug} items={settingsNavItems} />
 
           <div className="flex-1 lg:max-w-2xl">{children}</div>
         </div>

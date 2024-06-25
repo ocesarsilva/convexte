@@ -11,8 +11,8 @@ import {
   verifyEmail,
 } from "@/lib/auth/actions"
 import { Input } from "@/components/ui/input"
+import { SubmitButton } from "@/components/ui/submit-button"
 import { ExclamationTriangleIcon } from "@/components/icons"
-import { SubmitButton } from "@/components/submit-button"
 
 export function VerifyCode() {
   const [verifyEmailState, verifyEmailAction] = useFormState(verifyEmail, null)

@@ -1,12 +1,11 @@
 import "@/styles/globals.css"
 
 import type { Metadata, Viewport } from "next"
+import { RootProviders } from "@/contexts/root-providers"
 
 import { APP_TITLE } from "@/lib/constants"
 import { fontMono, fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { Toaster } from "@/components/ui/sonner"
-import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -38,15 +37,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <RootProviders>{children}</RootProviders>
       </body>
     </html>
   )

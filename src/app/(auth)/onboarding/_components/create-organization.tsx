@@ -13,8 +13,8 @@ import {
   createOrganizationSchema,
   type CreateOrganizationSchema,
 } from "@/lib/validators/organization"
+import { LoadingButton } from "@/components/ui/loading-button"
 import { CreateOrganizationForm } from "@/components/forms/create-organization-form"
-import { LoadingButton } from "@/components/loading-button"
 
 import { StepHeader } from "./text-header"
 

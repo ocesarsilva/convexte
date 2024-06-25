@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { PasswordInput } from "@/components/password-input"
-import { SubmitButton } from "@/components/submit-button"
+import { PasswordInput } from "@/components/ui/password-input"
+import { SubmitButton } from "@/components/ui/submit-button"
 
 export function Login() {
   const [state, formAction] = useFormState(login, null)

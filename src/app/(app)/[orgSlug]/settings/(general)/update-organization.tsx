@@ -12,8 +12,8 @@ import {
   updateOrganizationSchema,
   type UpdateOrganizationSchema,
 } from "@/lib/validators/organization"
+import { LoadingButton } from "@/components/ui/loading-button"
 import { UpdateOrganizationForm } from "@/components/forms/update-organization-form"
-import { LoadingButton } from "@/components/loading-button"
 
 interface UpdateOrganizationProps {
   org: Pick<Organization, "name" | "slug">
