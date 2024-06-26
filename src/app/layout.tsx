@@ -32,9 +32,15 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={cn(
+<<<<<<< Updated upstream
           "min-h-screen bg-background font-sans antialiased",
           fontMono.variable,
           fontSans.variable
+=======
+          "dark min-h-screen bg-background font-sans antialiased",
+          fontMono.className,
+          fontSans.className
+>>>>>>> Stashed changes
         )}
       >
         <RootProviders>{children}</RootProviders>

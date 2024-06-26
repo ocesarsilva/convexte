@@ -25,3 +25,20 @@ export async function getOrganizationsByUserId(input: { userId: string }) {
     }
   )()
 }
+
+export async function getOrganizationBySlug(orgSlug: string) {
+  return await cache(
+    async () => {
+      return db
+        .select()
+        .from(organization)
+        .where(eq(organization.slug, orgSlug))
+        .then((res) => res[0])
+    },
+    [`organization-${orgSlug}`],
+    {
+      revalidate: 900,
+      tags: [`organizations-${orgSlug}`],
+    }
+  )()
+}
