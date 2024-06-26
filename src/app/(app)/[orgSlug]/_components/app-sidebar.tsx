@@ -6,6 +6,7 @@ import { useSelectedLayoutSegment } from "next/navigation"
 
 import { appConfig } from "@/config/app"
 import { cn } from "@/lib/utils"
+import { Separator } from "@/components/ui/separator"
 import {
   Tooltip,
   TooltipContent,
@@ -22,9 +23,11 @@ export function AppSidebar({ children, orgSlug }: AppSidebarProps) {
   const segment = useSelectedLayoutSegment()
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-10 hidden w-20 flex-col border-r border-border/50 bg-background sm:flex">
-      <nav className="flex flex-col items-center gap-2 px-2 sm:py-5">
+    <aside className="fixed inset-y-0 left-0 z-10 hidden w-20 flex-col border-r border-border/50 bg-background py-5 sm:flex">
+      <nav className="flex flex-col items-center space-y-1.5 px-2">
         {children}
+
+        <Separator className="my-4" />
         {appConfig.navItems.map((item) => {
           const Icon = Icons[item.icon]
           const active = segment === item.segment
@@ -35,7 +38,7 @@ export function AppSidebar({ children, orgSlug }: AppSidebarProps) {
                 <Link
                   href={`/${orgSlug}${item.href}`}
                   className={cn(
-                    "flex h-8 w-full items-center justify-center rounded transition-colors hover:bg-muted/50",
+                    "flex size-9 items-center justify-center rounded transition-colors hover:bg-muted/50",
                     {
                       "bg-muted hover:bg-muted": active,
                     }
@@ -50,13 +53,14 @@ export function AppSidebar({ children, orgSlug }: AppSidebarProps) {
           )
         })}
       </nav>
-      <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-4">
+
+      <nav className="mt-auto flex flex-col items-center">
         <Tooltip>
           <TooltipTrigger asChild>
             <Link
               href="#"
               className={cn(
-                "flex h-8 w-full items-center justify-center rounded transition-colors hover:bg-muted"
+                "flex size-9 items-center justify-center rounded transition-colors hover:bg-muted"
               )}
             >
               <Icons.logout className="size-4" />

@@ -39,4 +39,30 @@ export const appConfig = {
       segment: "settings",
     },
   ] satisfies NavItem[],
+  settingsNavItems: [
+    {
+      title: "Geral",
+      href: "/settings",
+    },
+    {
+      title: "Membros",
+      href: "/members",
+    },
+    {
+      title: "Aparência",
+      href: "/settings/appearance",
+    },
+    {
+      title: "Notificações",
+      href: "/settings/notifications",
+    },
+    {
+      title: "API Tokens",
+      href: "/settings/api-tokens",
+    },
+    {
+      title: "Avançado",
+      href: "/settings/advanced",
+    },
+  ],
 }

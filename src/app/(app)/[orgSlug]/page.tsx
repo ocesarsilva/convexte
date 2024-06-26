@@ -1,21 +1,10 @@
-import { Icons } from "@/components/icons"
+import { PageHeader } from "@/components/layout/page-header"
 
-import { AppPageHead } from "./_components/app-page-head"
-
-export default function Page({
-  params,
-}: {
-  params: {
-    orgSlug: string
-  }
-}) {
+export default function Page() {
   return (
     <>
-      <AppPageHead
-        title="Home"
-        icon={<Icons.house className="size-4" />}
-        orgSlug={params.orgSlug}
-      />
+      <PageHeader title="Home" icon="house" />
+      Hello World
     </>
   )
 }

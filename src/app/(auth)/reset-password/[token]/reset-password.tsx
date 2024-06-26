@@ -6,9 +6,9 @@ import { toast } from "sonner"
 
 import { resetPassword } from "@/lib/auth/actions"
 import { Label } from "@/components/ui/label"
+import { PasswordInput } from "@/components/ui/password-input"
+import { SubmitButton } from "@/components/ui/submit-button"
 import { ExclamationTriangleIcon } from "@/components/icons"
-import { PasswordInput } from "@/components/password-input"
-import { SubmitButton } from "@/components/submit-button"
 
 export function ResetPassword({ token }: { token: string }) {
   const [state, formAction] = useFormState(resetPassword, null)
