@@ -13,6 +13,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface AppSidebarProps extends React.HTMLAttributes<HTMLElement> {
   orgSlug: string
@@ -27,7 +28,7 @@ export function AppSidebar({ children, orgSlug }: AppSidebarProps) {
       <nav className="flex flex-col items-center space-y-1.5 px-2">
         {children}
 
-        <Separator className="my-4" />
+        <Separator className="my-4 w-1/2" />
         {appConfig.navItems.map((item) => {
           const Icon = Icons[item.icon]
           const active = segment === item.segment
@@ -55,6 +56,7 @@ export function AppSidebar({ children, orgSlug }: AppSidebarProps) {
       </nav>
 
       <nav className="mt-auto flex flex-col items-center">
+        <ThemeToggle />
         <Tooltip>
           <TooltipTrigger asChild>
             <Link

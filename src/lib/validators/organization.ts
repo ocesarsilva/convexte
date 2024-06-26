@@ -22,6 +22,6 @@ export const deleteOrganizationSchema = z.object({
   orgSlug: z.string(),
 })
 
-export type DeleteOrganizationSchema = z.infer<typeof deleteOrganizationSchema>
 export type CreateOrganizationSchema = z.infer<typeof createOrganizationSchema>
 export type UpdateOrganizationSchema = z.infer<typeof updateOrganizationSchema>
+export type DeleteOrganizationSchema = z.infer<typeof deleteOrganizationSchema>

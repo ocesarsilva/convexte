@@ -13,7 +13,9 @@ export default async function AppIndex() {
 
   const organizations = await getOrganizationsByUserId({ userId: user.id })
 
-  if (organizations.length > 0) redirect(`/${organizations[0]?.slug}`)
+  if (organizations.length > 0) {
+    redirect(`/${organizations[0]?.slug}`)
+  }
 
   return redirect(Paths.Onboarding)
 }

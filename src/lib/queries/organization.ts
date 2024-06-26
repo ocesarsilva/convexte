@@ -38,7 +38,7 @@ export async function getOrganizationBySlug(orgSlug: string) {
     [`organization-${orgSlug}`],
     {
       revalidate: 900,
-      tags: [`organizations-${orgSlug}`],
+      tags: [`organization-${orgSlug}`],
     }
   )()
 }

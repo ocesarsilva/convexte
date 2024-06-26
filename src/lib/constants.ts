@@ -10,4 +10,5 @@ export enum Paths {
   Onboarding = "/onboarding",
   ResetPassword = "/reset-password",
 }
-export const unknownError = "An unknown error occurred. Please try again later."
+export const unknownError =
+  "Ocorreu um erro desconhecido. Por favor, tente novamente mais tarde."

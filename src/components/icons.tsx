@@ -1,11 +1,15 @@
 import { forwardRef, type SVGProps } from "react"
 import {
   Briefcase,
+  ChevronDown,
+  DollarSign,
   Headset,
   House,
   LogOut,
   MessageCircle,
+  Repeat,
   Settings,
+  Users,
   Webhook,
 } from "lucide-react"
 
@@ -131,4 +135,8 @@ export const Icons = {
   messagecircle: MessageCircle,
   settings: Settings,
   logout: LogOut,
+  dollarSign: DollarSign,
+  users: Users,
+  repeat: Repeat,
+  chevronsDown: ChevronDown,
 }

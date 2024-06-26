@@ -3,9 +3,10 @@ import Link from "next/link"
 import { type Pipeline } from "@/server/db/schema"
 import { LinkIcon, Settings } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn, formatPrice } from "@/lib/utils"
 
 import { Icons } from "../icons"
+import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 
 interface PipelineCardProps {
@@ -15,7 +16,7 @@ interface PipelineCardProps {
 export function PipelineCard({ pipeline }: PipelineCardProps) {
   return (
     <Link
-      href={`/`}
+      href={`#`}
       className="border-custom-border-200 bg-custom-background-100 flex flex-col rounded border"
     >
       <div className="relative h-[118px] w-full rounded-t ">
@@ -32,12 +33,12 @@ export function PipelineCard({ pipeline }: PipelineCardProps) {
 
         <div className="absolute bottom-4 z-[1] flex h-10 w-full items-center justify-between gap-3 px-4">
           <div className="flex flex-grow items-center gap-2.5 truncate">
-            <div className="grid h-9 w-9 flex-shrink-0 place-items-center rounded bg-white/90">
-              <Icons.briefcase className="size-5 text-primary-foreground" />
+            <div className="grid h-9 w-9 flex-shrink-0 place-items-center rounded bg-white">
+              <Icons.briefcase className="size-5 text-black" />
             </div>
 
             <div className="flex w-full flex-col justify-between gap-0.5 truncate">
-              <h3 className="truncate font-semibold text-primary">
+              <h3 className="truncate font-semibold text-white">
                 {pipeline.name}
               </h3>
               <span className="flex items-center gap-1.5">
@@ -62,19 +63,19 @@ export function PipelineCard({ pipeline }: PipelineCardProps) {
 
       <div
         className={cn(
-          "flex h-[104px] w-full flex-col justify-between rounded-b p-4",
+          "flex h-[104px] w-full flex-col justify-between rounded-b p-4 text-xs",
           {
             "opacity-90": true,
           }
         )}
       >
-        <p className="text-custom-text-300 line-clamp-2 break-words text-sm">
-          Criado em
-          {/* {project.description && project.description.trim() !== ""
-            ? project.description
-            : `Created on ${renderFormattedDate(project.created_at)}`} */}
-        </p>
+        <Badge className="w-fit rounded-sm">ATIVO</Badge>
+
         <div className="item-center flex justify-between">
+          <div>
+            <p>Leads: 2380</p>
+            <p>Faturamento: {formatPrice(12304)}</p>
+          </div>
           <Link
             className="text-custom-text-400 hover:bg-custom-background-80 hover:text-custom-text-200 flex items-center justify-center rounded p-1"
             href={`/`}
