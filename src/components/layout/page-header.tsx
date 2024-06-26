@@ -17,7 +17,7 @@ export function PageHeader({ children, title, icon }: PageHeaderProps) {
 
         <div className="flex flex-row items-center">
           <Icon className="mr-2 size-4" />
-          <h2 className="text-md tracking-tight">{title}</h2>
+          <h2 className="text-md font-semibold tracking-tight">{title}</h2>
         </div>
       </div>
 

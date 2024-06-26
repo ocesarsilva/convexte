@@ -43,9 +43,9 @@ export function formatPrice(
   price: number | string,
   options: Intl.NumberFormatOptions = {}
 ) {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("pt-BR", {
     style: "currency",
-    currency: options.currency ?? "USD",
+    currency: options.currency ?? "BRL",
     notation: options.notation ?? "compact",
     ...options,
   }).format(Number(price))

@@ -1,8 +1,9 @@
 import { getPipelinesByOrgSlug } from "@/lib/queries/pipeline"
 import { CreatePipelineDialog } from "@/components/create-pipeline-dialog"
 import { PageHeader } from "@/components/layout/page-header"
+import { Wrapper } from "@/components/wrapper"
 
-import { PipelinesList } from "./_components/pipelines"
+import { PipelinesList } from "./_components/pipelines-list"
 
 export default async function Page({
   params,
@@ -21,9 +22,10 @@ export default async function Page({
         <CreatePipelineDialog orgSlug={orgSlug} />
       </PageHeader>
 
-      <div className="vertical-scrollbar scrollbar-lg h-full w-full overflow-y-auto p-8">
+      <Wrapper>
+        {/* TODO: add skeleton */}
         <PipelinesList pipelinesPromise={pipelinesPromise} />
-      </div>
+      </Wrapper>
     </>
   )
 }

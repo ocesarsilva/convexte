@@ -1,5 +1,6 @@
 import { appConfig } from "@/config/app"
 import { PageHeader } from "@/components/layout/page-header"
+import { Wrapper } from "@/components/wrapper"
 
 import { SettingsSidebar } from "./_components/settings-sidebar"
 import { SettingsTabsbar } from "./_components/settings-tabsbar"
@@ -16,20 +17,19 @@ export default function SettingsLayout({
   params,
 }: SettingsLayoutProps) {
   const orgSlug = decodeURIComponent(params.orgSlug)
-
   const { settingsNavItems } = appConfig
 
   return (
     <>
       <PageHeader title="Configurações" icon="settings" />
       <SettingsTabsbar orgSlug={orgSlug} items={settingsNavItems} />
-      <div className="px-5 pb-16 pt-3 lg:px-10 lg:pt-10">
+      <Wrapper>
         <div className="mx-auto flex w-full flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
           <SettingsSidebar orgSlug={orgSlug} items={settingsNavItems} />
 
-          <div className="flex-1 lg:max-w-2xl">{children}</div>
+          <div className="flex-1">{children}</div>
         </div>
-      </div>
+      </Wrapper>
     </>
   )
 }

@@ -13,7 +13,7 @@ export function PipelinesList({ pipelinesPromise }: PipelinesListProps) {
   const pipelines = React.use(pipelinesPromise)
 
   if (pipelines.length < 1) {
-    return <p>Nenhum funil en</p>
+    return <p>Nenhum resultado...</p>
   }
 
   return (

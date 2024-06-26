@@ -55,7 +55,7 @@ export default async function SettingsPage({
 
   return (
     <div className="flex-1">
-      <Card>
+      <Card className="w-full">
         <CardHeader className="flex flex-row items-center gap-4">
           <div className="flex size-16 items-center justify-center rounded bg-emerald-500 text-2xl font-bold">
             {org.name.charAt(0).toLocaleUpperCase()}
@@ -69,7 +69,7 @@ export default async function SettingsPage({
             </p>
           </div>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 lg:max-w-2xl">
           <UpdateOrganization org={org} />
         </CardContent>
       </Card>

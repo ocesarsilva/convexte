@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm"
 import { generateId } from "lucia"
 
 import { validateRequest } from "../auth/validate-request"
+import { unknownError } from "../constants"
 import { getErrorMessage } from "../handle-error"
 import { slugify } from "../utils"
 import {
@@ -72,7 +73,7 @@ export async function updateOrganization(
     })
 
     if (orgWithSameSlug) {
-      throw new Error("O slug escolhido já está sendo usado.")
+      throw new Error("Este slug já foi escolhido.")
     }
 
     const [data] = await db
@@ -85,7 +86,7 @@ export async function updateOrganization(
       .returning()
 
     if (!data) {
-      throw new Error("Ocorreu um erro ao atualizar sua organização.")
+      throw new Error(unknownError)
     }
 
     revalidateTag(`organizations-${data.ownerId}`)
@@ -114,6 +115,5 @@ export async function deleteOrganization(fd: FormData) {
   await db.delete(organization).where(eq(organization.slug, orgSlug))
 
   revalidateTag(`organizations-${user.id}`)
-
   redirect(`/`)
 }

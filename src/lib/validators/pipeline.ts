@@ -22,6 +22,6 @@ export const deletePipelineSchema = z.object({
   pipelineSlug: z.string(),
 })
 
-export type DeletePipelineSchema = z.infer<typeof deletePipelineSchema>
 export type CreatePipelineSchema = z.infer<typeof createPipelineSchema>
 export type UpdatePipelineSchema = z.infer<typeof updatePipelineSchema>
+export type DeletePipelineSchema = z.infer<typeof deletePipelineSchema>

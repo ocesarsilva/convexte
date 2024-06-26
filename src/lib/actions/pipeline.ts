@@ -5,6 +5,7 @@ import { db } from "@/server/db"
 import { organization, pipeline } from "@/server/db/schema"
 import { generateId } from "lucia"
 
+import { unknownError } from "../constants"
 import { getErrorMessage } from "../handle-error"
 import { getOrganizationBySlug } from "../queries/organization"
 import { slugify } from "../utils"
@@ -26,7 +27,7 @@ export async function createPipeline(
     const org = await getOrganizationBySlug(input.orgSlug)
 
     if (!org) {
-      throw new Error("Organização não encontrada.")
+      throw new Error("Não foi possível encontrar essa organização.")
     }
 
     const id = generateId(21)
@@ -48,7 +49,7 @@ export async function createPipeline(
     revalidateTag(`pipelines-${input.orgSlug}`)
 
     if (!newPipeline) {
-      throw new Error("Ocorreu um erro ao criar sua funil de vendas.")
+      throw new Error(unknownError)
     }
 
     return {

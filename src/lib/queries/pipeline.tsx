@@ -11,7 +11,7 @@ export async function getPipelinesByOrgSlug(input: { orgSlug: string }) {
   const org = await getOrganizationBySlug(input.orgSlug)
 
   if (!org) {
-    throw new Error("Não foi possível encontrar essa organização")
+    throw new Error("Não foi possível encontrar essa organização.")
   }
 
   return await cache(

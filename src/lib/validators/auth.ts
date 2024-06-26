@@ -22,7 +22,7 @@ export const resetPasswordSchema = z.object({
   password: z.string().min(8, "A senha é muito curta").max(255),
 })
 
-export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>
-export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>
 export type LoginInput = z.infer<typeof loginSchema>
 export type SignupInput = z.infer<typeof signupSchema>
+export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>
+export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>
