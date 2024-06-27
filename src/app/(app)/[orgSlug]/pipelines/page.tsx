@@ -24,7 +24,7 @@ export default async function Page({
 
       <Wrapper>
         {/* TODO: add skeleton */}
-        <PipelinesList pipelinesPromise={pipelinesPromise} />
+        <PipelinesList pipelinesPromise={pipelinesPromise} orgSlug={orgSlug} />
       </Wrapper>
     </>
   )

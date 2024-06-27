@@ -11,12 +11,13 @@ import { Button } from "../ui/button"
 
 interface PipelineCardProps {
   pipeline: Pipeline
+  orgSlug: string
 }
 
-export function PipelineCard({ pipeline }: PipelineCardProps) {
+export function PipelineCard({ pipeline, orgSlug }: PipelineCardProps) {
   return (
     <Link
-      href={`#`}
+      href={`/${orgSlug}/pipelines/${pipeline.slug}`}
       className="border-custom-border-200 bg-custom-background-100 flex flex-col rounded border"
     >
       <div className="relative h-[118px] w-full rounded-t ">
@@ -78,7 +79,7 @@ export function PipelineCard({ pipeline }: PipelineCardProps) {
           </div>
           <Link
             className="text-custom-text-400 hover:bg-custom-background-80 hover:text-custom-text-200 flex items-center justify-center rounded p-1"
-            href={`/`}
+            href={`/${orgSlug}/pipelines/${pipeline.slug}/settings`}
           >
             <Settings className="h-3.5 w-3.5" />
           </Link>

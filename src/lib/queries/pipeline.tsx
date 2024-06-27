@@ -28,3 +28,20 @@ export async function getPipelinesByOrgSlug(input: { orgSlug: string }) {
     }
   )()
 }
+
+export async function getPipelineBySlug(pipelineSlug: string) {
+  return await cache(
+    async () => {
+      return db
+        .select()
+        .from(pipeline)
+        .where(eq(pipeline.slug, pipelineSlug))
+        .then((res) => res[0])
+    },
+    [`pipeline-${pipelineSlug}`],
+    {
+      revalidate: 900,
+      tags: [`pipeline-${pipelineSlug}`],
+    }
+  )()
+}
