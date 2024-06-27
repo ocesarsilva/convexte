@@ -1,5 +1,8 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { type Pipeline } from "@/server/db/schema"
 import { LinkIcon, Settings } from "lucide-react"
 
@@ -15,26 +18,29 @@ interface PipelineCardProps {
 }
 
 export function PipelineCard({ pipeline, orgSlug }: PipelineCardProps) {
+  const router = useRouter()
+
   return (
     <Link
       href={`/${orgSlug}/pipelines/${pipeline.slug}`}
-      className="border-custom-border-200 bg-custom-background-100 flex flex-col rounded border"
+      className="flex flex-col rounded border"
     >
-      <div className="relative h-[118px] w-full rounded-t ">
+      <div className="relative h-[118px] w-full rounded-t">
         <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 to-transparent" />
-
+        <Badge className="absolute right-2 top-2 z-10 w-fit rounded-sm">
+          Ativo
+        </Badge>
         <Image
-          src={
-            "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
+          src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           fill
+          priority={false}
           alt="project image"
-          className="absolute left-0 top-0 h-full w-full rounded-t object-cover"
+          className="absolute left-0 top-0 size-full rounded-t object-cover"
         />
 
         <div className="absolute bottom-4 z-[1] flex h-10 w-full items-center justify-between gap-3 px-4">
-          <div className="flex flex-grow items-center gap-2.5 truncate">
-            <div className="grid h-9 w-9 flex-shrink-0 place-items-center rounded bg-white">
+          <div className="flex grow items-center gap-2.5 truncate">
+            <div className="grid size-9 shrink-0 place-items-center rounded bg-white">
               <Icons.briefcase className="size-5 text-black" />
             </div>
 
@@ -50,39 +56,39 @@ export function PipelineCard({ pipeline, orgSlug }: PipelineCardProps) {
             </div>
           </div>
 
-          <div className="flex h-full flex-shrink-0 items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="size-6 bg-white/10 hover:bg-white/30"
-            >
-              <LinkIcon className="size-3 text-white" />
-            </Button>
-          </div>
+          <div className="flex h-full shrink-0 items-center gap-2"></div>
         </div>
       </div>
 
       <div
         className={cn(
-          "flex h-[104px] w-full flex-col justify-between rounded-b p-4 text-xs",
+          "flex h-[90px] w-full flex-col justify-between rounded-b p-4 text-xs",
           {
             "opacity-90": true,
           }
         )}
       >
-        <Badge className="w-fit rounded-sm">ATIVO</Badge>
-
-        <div className="item-center flex justify-between">
+        <div className="flex flex-1 items-end justify-between">
           <div>
             <p>Leads: 2380</p>
             <p>Faturamento: {formatPrice(12304)}</p>
           </div>
-          <Link
-            className="text-custom-text-400 hover:bg-custom-background-80 hover:text-custom-text-200 flex items-center justify-center rounded p-1"
-            href={`/${orgSlug}/pipelines/${pipeline.slug}/settings`}
-          >
-            <Settings className="h-3.5 w-3.5" />
-          </Link>
+
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" className="size-7 bg-white/10">
+              <LinkIcon className="size-3 text-white" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-7 bg-white/10"
+              onClick={() =>
+                router.push(`/${orgSlug}/pipelines/${pipeline.slug}/settings`)
+              }
+            >
+              <Settings className="size-3.5" />
+            </Button>
+          </div>
         </div>
       </div>
     </Link>

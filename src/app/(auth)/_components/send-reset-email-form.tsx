@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { SubmitButton } from "@/components/ui/submit-button"
 import { ExclamationTriangleIcon } from "@/components/icons"
 
-export function SendResetEmail() {
+export function SendResetEmailForm() {
   const [state, formAction] = useFormState(sendPasswordResetLink, null)
   const router = useRouter()
 
@@ -25,9 +25,10 @@ export function SendResetEmail() {
     }
     if (state?.error) {
       toast(state.error, {
-        icon: <ExclamationTriangleIcon className="h-5 w-5 text-destructive" />,
+        icon: <ExclamationTriangleIcon className="size-5 text-destructive" />,
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.error, state?.success])
 
   return (

@@ -33,6 +33,7 @@ export function CreatePipelineForm({
 
   React.useEffect(() => {
     form.setValue("slug", slugify(nameState))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nameState])
 
   return (

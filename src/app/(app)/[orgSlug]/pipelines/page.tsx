@@ -18,7 +18,7 @@ export default async function Page({
 
   return (
     <>
-      <PageHeader title="Funis de venda" icon="briefcase">
+      <PageHeader title="Funis de venda">
         <CreatePipelineDialog orgSlug={orgSlug} />
       </PageHeader>
 

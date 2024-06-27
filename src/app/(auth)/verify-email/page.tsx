@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import { VerifyCode } from "./verify-code"
+import { VerifyCodeForm } from "../_components/verify-code-form"
 
 export const metadata = {
   title: "Verify Email",
@@ -33,7 +33,7 @@ export default async function VerifyEmailPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <VerifyCode />
+        <VerifyCodeForm />
       </CardContent>
     </Card>
   )

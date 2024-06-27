@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input"
 import { SubmitButton } from "@/components/ui/submit-button"
 import { ExclamationTriangleIcon } from "@/components/icons"
 
-export function VerifyCode() {
+export function VerifyCodeForm() {
   const [verifyEmailState, verifyEmailAction] = useFormState(verifyEmail, null)
   const [resendState, resendAction] = useFormState(resendEmail, null)
   const codeFormRef = useRef<HTMLFormElement>(null)
@@ -25,7 +25,7 @@ export function VerifyCode() {
     }
     if (resendState?.error) {
       toast(resendState.error, {
-        icon: <ExclamationTriangleIcon className="h-5 w-5 text-destructive" />,
+        icon: <ExclamationTriangleIcon className="size-5 text-destructive" />,
       })
     }
   }, [resendState?.error, resendState?.success])
@@ -33,7 +33,7 @@ export function VerifyCode() {
   useEffect(() => {
     if (verifyEmailState?.error) {
       toast(verifyEmailState.error, {
-        icon: <ExclamationTriangleIcon className="h-5 w-5 text-destructive" />,
+        icon: <ExclamationTriangleIcon className="size-5 text-destructive" />,
       })
     }
   }, [verifyEmailState?.error])

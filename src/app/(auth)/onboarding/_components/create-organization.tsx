@@ -52,6 +52,7 @@ export function CreateCompany({ userId }: { userId: string }) {
 
   React.useEffect(() => {
     form.setValue("slug", slugify(nameState))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nameState])
 
   return (

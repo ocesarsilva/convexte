@@ -20,13 +20,13 @@ export const SettingsPipelineTabsbar = ({
   const pathname = usePathname()
 
   return (
-    <div className="bg-custom-background-100 no-scrollbar sticky inset-0 z-10 flex flex-shrink-0 overflow-x-auto lg:hidden">
+    <div className="no-scrollbar sticky inset-0 z-10 flex shrink-0 overflow-x-auto lg:hidden">
       {items.map((item, index) => (
         <div
           className={cn(
-            "flex flex-grow cursor-pointer justify-around whitespace-nowrap border-b px-3 py-2 text-sm",
+            "flex grow cursor-pointer justify-around whitespace-nowrap border-b px-3 py-2 text-sm",
             pathname === `/${orgSlug}${item.href}`
-              ? "flex flex-grow cursor-pointer justify-around whitespace-nowrap border-b-2 border-primary px-3 py-2 text-sm"
+              ? "flex grow cursor-pointer justify-around whitespace-nowrap border-b-2 border-primary px-3 py-2 text-sm"
               : ""
           )}
           key={index}

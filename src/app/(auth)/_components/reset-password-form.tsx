@@ -10,13 +10,13 @@ import { PasswordInput } from "@/components/ui/password-input"
 import { SubmitButton } from "@/components/ui/submit-button"
 import { ExclamationTriangleIcon } from "@/components/icons"
 
-export function ResetPassword({ token }: { token: string }) {
+export function ResetPasswordForm({ token }: { token: string }) {
   const [state, formAction] = useFormState(resetPassword, null)
 
   useEffect(() => {
     if (state?.error) {
       toast(state.error, {
-        icon: <ExclamationTriangleIcon className="h-5 w-5 text-destructive" />,
+        icon: <ExclamationTriangleIcon className="size-5 text-destructive" />,
       })
     }
   }, [state?.error])

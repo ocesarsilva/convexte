@@ -7,7 +7,7 @@ import { OverviewCard } from "./_components/overview-card"
 export default function Page() {
   return (
     <>
-      <PageHeader title="Home" icon="house" />
+      <PageHeader title="Home" />
 
       <Wrapper>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

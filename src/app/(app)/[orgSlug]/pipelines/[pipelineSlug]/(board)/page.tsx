@@ -32,7 +32,7 @@ export default async function PipelineBoardPage({
 
   return (
     <>
-      <PageHeader title={pipeline.name} icon="briefcase">
+      <PageHeader title={pipeline.name}>
         <Button size="sm">Automatize</Button>
       </PageHeader>
     </>

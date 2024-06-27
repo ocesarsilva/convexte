@@ -8,5 +8,4 @@ export type NavItem = {
   title: string
   href: string
   icon: keyof typeof Icons
-  segment: string | null
 }

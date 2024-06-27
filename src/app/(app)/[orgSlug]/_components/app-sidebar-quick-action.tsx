@@ -9,16 +9,20 @@ export function AppSidebarQuickAction({
   isSheet?: boolean
 }) {
   return (
-    <div className="flex w-full items-center justify-center gap-2 py-2 sm:flex-col">
+    <div className="flex w-full items-center justify-center gap-1 py-2 sm:flex-col sm:p-0 sm:pt-3">
       <Button
-        size={isSheet ? "default" : "icon"}
-        variant="outline"
-        className={cn({ "flex-1 justify-start": isSheet })}
+        size={isSheet ? "sm" : "icon"}
+        variant={isSheet ? "outline" : "ghost"}
+        className={cn({ "flex-1 justify-start gap-2": isSheet })}
       >
-        <PenSquare className="mr-2 size-4 sm:m-0" />
+        <PenSquare className="size-4" />
         <span className="sm:hidden">Novo Lead</span>
       </Button>
-      <Button size="icon" variant="outline">
+      <Button
+        size="icon"
+        variant={isSheet ? "outline" : "ghost"}
+        className={cn("size-9", { "size-8": isSheet })}
+      >
         <Search className="size-4" />
       </Button>
     </div>

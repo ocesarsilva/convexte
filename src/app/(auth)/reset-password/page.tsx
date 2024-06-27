@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import { SendResetEmail } from "./send-reset-email"
+import { SendResetEmailForm } from "../_components/send-reset-email-form"
 
 export const metadata = {
   title: "Forgot Password",
@@ -31,7 +31,7 @@ export default async function ForgotPasswordPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <SendResetEmail />
+        <SendResetEmailForm />
       </CardContent>
     </Card>
   )

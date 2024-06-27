@@ -21,7 +21,7 @@ export default function SettingsLayout({
 
   return (
     <>
-      <PageHeader title="Configurações" icon="settings" />
+      <PageHeader title="Configurações" />
       <SettingsTabsbar orgSlug={orgSlug} items={settingsNavItems} />
       <Wrapper>
         <div className="mx-auto flex w-full flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">

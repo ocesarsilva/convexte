@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-// import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -47,7 +46,6 @@ export function CreatePipelineDialog({
   onOpenChange,
   ...props
 }: CreatePipelineDialogProps) {
-  // const router = useRouter()
   const [isCreatePending, startCreateTransaction] = React.useTransition()
   const isDesktop = useMediaQuery("(min-width: 640px)")
 
