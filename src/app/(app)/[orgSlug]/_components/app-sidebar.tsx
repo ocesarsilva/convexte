@@ -38,7 +38,7 @@ export function AppSidebar({ children, orgSlug, ...props }: AppSidebarProps) {
           const Icon = Icons[item.icon]
           const url = `/${orgSlug}${item.href}`
           const active = url === pathname
-          console.log(active)
+
           return (
             <Tooltip key={item.title} delayDuration={0}>
               <TooltipTrigger asChild>

@@ -12,6 +12,14 @@ import {
   updateOrganizationSchema,
   type UpdateOrganizationSchema,
 } from "@/lib/validators/organization"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { LoadingButton } from "@/components/ui/loading-button"
 import { UpdateOrganizationForm } from "@/components/forms/update-organization-form"
 
@@ -50,18 +58,30 @@ export function UpdateOrganization({ org }: UpdateOrganizationProps) {
   }
 
   return (
-    <UpdateOrganizationForm
-      form={form}
-      onSubmit={onSubmit}
-      className="text-start"
-    >
-      <LoadingButton
-        className="w-fit"
-        loading={isCreatePending}
-        disabled={isCreatePending}
-      >
-        Salvar
-      </LoadingButton>
-    </UpdateOrganizationForm>
+    <Card>
+      <CardHeader>
+        <CardTitle>Nome da organização</CardTitle>
+        <CardDescription>
+          Usado para identificar sua area de trabalho
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <UpdateOrganizationForm
+          form={form}
+          onSubmit={onSubmit}
+          className="text-start"
+        />
+      </CardContent>
+      <CardFooter className="border-t px-6 py-4">
+        <LoadingButton
+          onClick={form.handleSubmit(onSubmit)}
+          className="w-28"
+          loading={isCreatePending}
+          disabled={isCreatePending}
+        >
+          Salvar
+        </LoadingButton>
+      </CardFooter>
+    </Card>
   )
 }

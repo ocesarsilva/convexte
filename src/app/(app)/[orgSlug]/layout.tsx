@@ -47,7 +47,7 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
             <AppSidebarQuickAction isSheet />
           </AppSidebarSheet>
           <div className="flex flex-col sm:pl-20">
-            <div className="min-h-screen flex-1">{children}</div>
+            <div className="min-h-screen flex-1 bg-muted/15">{children}</div>
           </div>
         </div>
       </TooltipProvider>

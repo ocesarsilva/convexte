@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input"
 
 interface UpdateOrganizationFormProps
   extends Omit<React.ComponentPropsWithRef<"form">, "onSubmit"> {
-  children: React.ReactNode
+  children?: React.ReactNode
   form: UseFormReturn<UpdateOrganizationSchema>
   onSubmit: (data: UpdateOrganizationSchema) => void
 }

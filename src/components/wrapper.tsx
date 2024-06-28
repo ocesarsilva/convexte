@@ -9,7 +9,7 @@ const wrapperVariants = cva("grid items-center gap-8 pb-8 pt-6 lg:py-6", {
       default: "container",
       sidebar: "",
       centered: "container flex h-dvh max-w-2xl flex-col justify-center",
-      markdown: "container max-w-3xl py-8 md:py-10",
+      settings: "flex flex-1 flex-col gap-4  p-4 md:mt-10 md:gap-8 md:p-10",
     },
   },
   defaultVariants: {

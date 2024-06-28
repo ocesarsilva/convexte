@@ -2,8 +2,7 @@ import { appConfig } from "@/config/app"
 import { PageHeader } from "@/components/layout/page-header"
 import { Wrapper } from "@/components/wrapper"
 
-import { SettingsSidebar } from "./_components/settings-sidebar"
-import { SettingsTabsbar } from "./_components/settings-tabsbar"
+import { SettingsSidebar } from "../../../../components/layout/settings-sidebar"
 
 interface SettingsLayoutProps {
   children: React.ReactNode
@@ -22,12 +21,11 @@ export default function SettingsLayout({
   return (
     <>
       <PageHeader title="Configurações" />
-      <SettingsTabsbar orgSlug={orgSlug} items={settingsNavItems} />
-      <Wrapper>
-        <div className="mx-auto flex w-full flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
+      <Wrapper variant="settings">
+        <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
           <SettingsSidebar orgSlug={orgSlug} items={settingsNavItems} />
 
-          <div className="flex-1">{children}</div>
+          {children}
         </div>
       </Wrapper>
     </>

@@ -1,9 +1,7 @@
 import { appConfig } from "@/config/app"
 import { PageHeader } from "@/components/layout/page-header"
+import { SettingsSidebar } from "@/components/layout/settings-sidebar"
 import { Wrapper } from "@/components/wrapper"
-
-import { SettingsPipelineSidebar } from "./_components/settings-pipeline-sidebar"
-import { SettingsPipelineTabsbar } from "./_components/settings-pipeline-tabsbar"
 
 interface SettingsLayoutProps {
   children: React.ReactNode
@@ -22,12 +20,12 @@ export default function SettingsLayout({
   return (
     <>
       <PageHeader title="Configurações" />
-      <SettingsPipelineTabsbar orgSlug={orgSlug} items={settingsNavItems} />
-      <Wrapper>
-        <div className="mx-auto flex w-full flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
-          <SettingsPipelineSidebar orgSlug={orgSlug} items={settingsNavItems} />
 
-          <div className="flex-1">{children}</div>
+      <Wrapper variant="settings">
+        <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
+          <SettingsSidebar orgSlug={orgSlug} items={settingsNavItems} />
+
+          {children}
         </div>
       </Wrapper>
     </>
