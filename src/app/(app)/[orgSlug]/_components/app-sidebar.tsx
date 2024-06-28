@@ -38,7 +38,7 @@ export function AppSidebar({ children, orgSlug, ...props }: AppSidebarProps) {
           const Icon = Icons[item.icon]
           const url = `/${orgSlug}${item.href}`
           const active = url === pathname
-
+          console.log(active)
           return (
             <Tooltip key={item.title} delayDuration={0}>
               <TooltipTrigger asChild>
@@ -46,13 +46,12 @@ export function AppSidebar({ children, orgSlug, ...props }: AppSidebarProps) {
                   href={url}
                   className={cn(
                     buttonVariants({
-                      variant: "ghost",
+                      variant: active ? "outline" : "ghost",
                       size: "icon",
                     }),
                     "size-9",
                     {
-                      "dark:bg-muted  dark:hover:bg-muted dark:hover:text-white ":
-                        active,
+                      "bg-accent/50": active,
                     }
                   )}
                 >

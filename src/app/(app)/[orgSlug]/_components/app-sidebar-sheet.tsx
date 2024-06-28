@@ -43,10 +43,12 @@ export function AppSidebarSheet({ orgSlug, children }: AppSidebarSheetProps) {
                   key={item.title}
                   href={url}
                   className={cn(
-                    buttonVariants({ variant: "ghost", size: "sm" }),
+                    buttonVariants({
+                      variant: active ? "outline" : "ghost",
+                      size: "sm",
+                    }),
                     {
-                      "bg-accent dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white":
-                        active,
+                      "bg-accent/50": active,
                     },
                     "w-full justify-start"
                   )}

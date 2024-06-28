@@ -12,10 +12,10 @@ import { AppSidebarQuickAction } from "./_components/app-sidebar-quick-action"
 import { AppSidebarSheet } from "./_components/app-sidebar-sheet"
 
 interface AppLayoutProps {
+  children: React.ReactNode
   params: {
     orgSlug: string
   }
-  children: React.ReactNode
 }
 
 export default async function AppLayout({ children, params }: AppLayoutProps) {
