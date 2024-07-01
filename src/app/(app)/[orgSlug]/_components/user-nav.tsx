@@ -16,27 +16,38 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export function UserNav({ user }: { user: User }) {
+export function UserNav({
+  user,
+  isSheet = false,
+}: {
+  user: User
+  isSheet?: boolean
+}) {
   const initials = user.firstName.charAt(0) + user.lastName?.charAt(0) ?? ""
-  console.log(user.avatar)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative size-8 rounded-full">
-          <Avatar className="size-8">
+        <Button variant="ghost" className="relative size-7 rounded-sm">
+          <Avatar className={"size-7 rounded-sm"}>
             <AvatarImage
               src={
                 user.avatar
                   ? user.avatar
                   : `https://avatar.vercel.sh/rauchg.svg?text=${initials}`
               }
-              alt="@shadcn"
+              alt={`${user.firstName} avatar`}
             />
             <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent side="right" className="w-56" align="end" forceMount>
+      <DropdownMenuContent
+        side={isSheet ? "bottom" : "right"}
+        className="w-56"
+        align="end"
+        forceMount
+      >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
