@@ -1,12 +1,18 @@
+"use clinet"
+
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 import { getPipelineBySlug } from "@/lib/queries/pipeline"
 import { Button } from "@/components/ui/button"
+import { Icons } from "@/components/icons"
 import { PageHeader } from "@/components/layout/page-header"
+import { PageBreadCrumbs } from "@/components/page-breadcrumbs"
 
 interface SettingsPipelinePageProps {
   params: {
     pipelineSlug: string
+    orgSlug: string
   }
 }
 
@@ -32,8 +38,26 @@ export default async function PipelineBoardPage({
 
   return (
     <>
-      <PageHeader title={pipeline.name}>
-        <Button size="sm">Automatize</Button>
+      <PageHeader
+        header={
+          <PageBreadCrumbs
+            root={{
+              label: pipeline.name,
+              href: `/${params.orgSlug}/pipelines/${pipeline.slug}`,
+            }}
+          />
+        }
+      >
+        <div className="flex items-center space-x-2">
+          <Button size="sm">Automatize</Button>
+          <Button variant="outline" className="size-8" size="icon" asChild>
+            <Link
+              href={`/${params.orgSlug}/pipelines/${pipeline.slug}/settings`}
+            >
+              <Icons.settings className="size-4" />
+            </Link>
+          </Button>
+        </div>
       </PageHeader>
     </>
   )

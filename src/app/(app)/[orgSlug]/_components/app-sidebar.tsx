@@ -34,10 +34,11 @@ export function AppSidebar({ children, orgSlug, ...props }: AppSidebarProps) {
         {children}
 
         <Separator className="my-1 w-1/3" />
-        {navItems.map((item) => {
+        {navItems.map((item, idx) => {
           const Icon = Icons[item.icon]
           const url = `/${orgSlug}${item.href}`
-          const active = url === pathname
+          const active =
+            (pathname.startsWith(url) && idx !== 0) || pathname === url
 
           return (
             <Tooltip key={item.title} delayDuration={0}>

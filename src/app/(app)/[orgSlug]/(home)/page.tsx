@@ -1,13 +1,29 @@
 import { formatPrice } from "@/lib/utils"
 import { PageHeader } from "@/components/layout/page-header"
+import { PageBreadCrumbs } from "@/components/page-breadcrumbs"
 import { Wrapper } from "@/components/wrapper"
 
 import { OverviewCard } from "./_components/overview-card"
 
-export default function Page() {
+export default function Page({
+  params,
+}: {
+  params: {
+    orgSlug: string
+  }
+}) {
   return (
     <>
-      <PageHeader title="Home" />
+      <PageHeader
+        header={
+          <PageBreadCrumbs
+            root={{
+              label: "Home",
+              href: `/${params.orgSlug}`,
+            }}
+          />
+        }
+      />
 
       <Wrapper>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

@@ -9,9 +9,9 @@ import { user } from "./user"
 
 export const lead = pgTable("leads", {
   id: varchar("id", { length: 21 }).primaryKey(),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone").notNull(),
+  name: text("name"),
+  email: text("email"),
+  phone: text("phone"),
 
   pipelineId: text("pipeline_id")
     .notNull()
