@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion"
 
 import { CreateCompany } from "./create-organization"
 import { Intro } from "./intro"
+import { UpdateAccount } from "./update-account"
 
 interface OnboardingProps {
   userId: string
@@ -17,7 +18,8 @@ export function Onboarding({ userId }: OnboardingProps) {
   return (
     <AnimatePresence mode="wait">
       {!step && <Intro key="intro" />}
-      {step === "create" && <CreateCompany userId={userId} />}
+      {step === "create-account" && <UpdateAccount userId={userId} />}
+      {step === "create-organization" && <CreateCompany userId={userId} />}
     </AnimatePresence>
   )
 }

@@ -1,39 +1,39 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
-import { createOrganization } from "@/lib/actions/organization"
-import { slugify } from "@/lib/utils"
+import { updateUser } from "@/lib/actions/user"
 import {
-  createOrganizationSchema,
-  type CreateOrganizationSchema,
-} from "@/lib/validators/organization"
+  updateAccountWithoutEmailSchema,
+  type UpdateAccountWithoutEmailSchema,
+} from "@/lib/validators/account"
 import { LoadingButton } from "@/components/ui/loading-button"
-import { CreateOrganizationForm } from "@/components/forms/create-organization-form"
+import { UpdateAccountWithoutEmailForm } from "@/components/forms/update-account-without-email-form"
 
 import { StepHeader } from "./text-header"
 
-export function CreateCompany({ userId }: { userId: string }) {
+export function UpdateAccount({ userId }: { userId: string }) {
   const router = useRouter()
-
+  const searchParams = useSearchParams()
   const [isCreatePending, startCreateTransaction] = React.useTransition()
 
-  const form = useForm<CreateOrganizationSchema>({
-    resolver: zodResolver(createOrganizationSchema),
+  const form = useForm<UpdateAccountWithoutEmailSchema>({
+    resolver: zodResolver(updateAccountWithoutEmailSchema),
     defaultValues: {
-      name: "",
-      slug: "",
+      firstName: "",
+      lastName: "",
+      avatar: "",
     },
   })
 
-  function onSubmit(input: CreateOrganizationSchema) {
+  function onSubmit(input: UpdateAccountWithoutEmailSchema) {
     startCreateTransaction(async () => {
-      const { data, error } = await createOrganization({ ...input, userId })
+      const { data, error } = await updateUser({ ...input, userId })
 
       if (error) {
         toast.error(error)
@@ -41,19 +41,14 @@ export function CreateCompany({ userId }: { userId: string }) {
       }
 
       if (data) {
-        router.push(`/${data.slug}`)
+        const newSearchParams = new URLSearchParams(searchParams)
+        newSearchParams.set("step", "create-organization")
+        router.push(`/onboarding?${newSearchParams.toString()}`)
       }
 
       // form.reset()
     })
   }
-
-  const nameState = form.watch("name")
-
-  React.useEffect(() => {
-    form.setValue("slug", slugify(nameState))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nameState])
 
   return (
     <motion.div
@@ -73,10 +68,11 @@ export function CreateCompany({ userId }: { userId: string }) {
         className="flex flex-col space-y-4 rounded-xl bg-background/60 p-8 text-center"
       >
         <StepHeader
-          title="Agora vamos criar sua organização"
-          description="Você pode atualizar o nome da sua org mais tarde"
+          title="Vamos começar configurando sua conta"
+          description="Você pode atualizar as informações da sua conta mais tarde"
         />
         <motion.div
+          className="mt-10"
           variants={{
             hidden: { opacity: 0, x: 100 },
             show: {
@@ -86,15 +82,15 @@ export function CreateCompany({ userId }: { userId: string }) {
             },
           }}
         >
-          <CreateOrganizationForm
+          <UpdateAccountWithoutEmailForm
             form={form}
             onSubmit={onSubmit}
             className="text-start"
           >
             <LoadingButton loading={isCreatePending} disabled={isCreatePending}>
-              Salvar
+              Continuar
             </LoadingButton>
-          </CreateOrganizationForm>
+          </UpdateAccountWithoutEmailForm>
         </motion.div>
       </motion.div>
     </motion.div>

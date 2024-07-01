@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { type User } from "lucia"
 
 import { appConfig } from "@/config/app"
 import { cn } from "@/lib/utils"
@@ -16,12 +17,20 @@ import {
 import { Icons } from "@/components/icons"
 import { ThemeToggle } from "@/components/theme-toggle"
 
+import { UserNav } from "./user-nav"
+
 interface AppSidebarProps extends React.HTMLAttributes<HTMLElement> {
   orgSlug: string
   children: React.ReactNode
+  user: User
 }
 
-export function AppSidebar({ children, orgSlug, ...props }: AppSidebarProps) {
+export function AppSidebar({
+  children,
+  orgSlug,
+  user,
+  ...props
+}: AppSidebarProps) {
   const pathname = usePathname()
   const { navItems } = appConfig
 
@@ -89,23 +98,7 @@ export function AppSidebar({ children, orgSlug, ...props }: AppSidebarProps) {
 
         <ThemeToggle />
 
-        <Tooltip delayDuration={0}>
-          <TooltipTrigger asChild>
-            <Link
-              href="/logout"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "size-9"
-              )}
-            >
-              <Icons.logout className="size-4" />
-              <span className="sr-only">Sair</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right" className="flex items-center gap-4">
-            Sair
-          </TooltipContent>
-        </Tooltip>
+        <UserNav user={user} />
       </nav>
     </aside>
   )

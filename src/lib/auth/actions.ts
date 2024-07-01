@@ -122,6 +122,7 @@ export async function signup(
   const userId = generateId(21)
   const hashedPassword = await new Scrypt().hash(password)
   await db.insert(user).values({
+    firstName: "unknown",
     id: userId,
     email,
     hashedPassword,

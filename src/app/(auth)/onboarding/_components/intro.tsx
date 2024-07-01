@@ -68,7 +68,9 @@ export function Intro() {
               },
             }}
           >
-            <Button onClick={() => router.push("/onboarding?step=create")}>
+            <Button
+              onClick={() => router.push("/onboarding?step=create-account")}
+            >
               Vamos começar
             </Button>
           </motion.div>

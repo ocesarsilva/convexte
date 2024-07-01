@@ -30,7 +30,7 @@ export default async function AppLayout({ children, params }: AppLayoutProps) {
     <SidebarProvider>
       <TooltipProvider>
         <div className="flex min-h-screen w-full flex-col">
-          <AppSidebar orgSlug={orgSlug}>
+          <AppSidebar user={user} orgSlug={orgSlug}>
             <OrganizationSwitcher
               organizationsPromise={organizationsPromise}
               userId={user.id}
