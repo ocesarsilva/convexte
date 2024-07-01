@@ -9,7 +9,7 @@ export const appConfig = {
     },
     {
       title: "Chats",
-      href: "/chats",
+      href: "/chat",
       icon: "messagecircle",
     },
     {
