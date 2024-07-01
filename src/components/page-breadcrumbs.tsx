@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { cn } from "@/lib/utils"
@@ -32,20 +31,18 @@ export function PageBreadCrumbs({ root, items }: PageBreadCrumbsProps) {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link href={root.href}>
-              <BreadcrumbEllipsis
-                className={cn("size-4 sm:hidden", { hidden: !items })}
-              />
-              <span
-                className={cn("hidden sm:flex", {
-                  "font-semibold text-foreground": pathname === root.href,
-                  block: !items,
-                })}
-              >
-                {root.label}
-              </span>
-            </Link>
+          <BreadcrumbLink href={root.href}>
+            <BreadcrumbEllipsis
+              className={cn("size-4 sm:hidden", { hidden: !items })}
+            />
+            <span
+              className={cn("hidden sm:flex", {
+                "font-semibold text-foreground": pathname === root.href,
+                block: !items,
+              })}
+            >
+              {root.label}
+            </span>
           </BreadcrumbLink>
         </BreadcrumbItem>
 
@@ -56,15 +53,13 @@ export function PageBreadCrumbs({ root, items }: PageBreadCrumbsProps) {
             <React.Fragment key={idx}>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink>
-                  <Link
-                    className={cn({
-                      "font-semibold text-foreground": active,
-                    })}
-                    href={item.href}
-                  >
-                    {item.label}
-                  </Link>
+                <BreadcrumbLink
+                  className={cn({
+                    "font-semibold text-foreground": active,
+                  })}
+                  href={item.href}
+                >
+                  {item.label}
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </React.Fragment>

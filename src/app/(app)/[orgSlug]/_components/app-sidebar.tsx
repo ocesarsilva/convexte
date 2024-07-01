@@ -92,7 +92,7 @@ export function AppSidebar({ children, orgSlug, ...props }: AppSidebarProps) {
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
             <Link
-              href="#"
+              href="/logout"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
                 "size-9"
